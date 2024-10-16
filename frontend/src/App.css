@@ -1,0 +1,65 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Estilos para PlanResult --- */
+/* --- Estilos básicos sin transiciones ni opacidad --- */
+.plan-result {
+  display: block;  /* Garantizamos que el contenedor sea visible */
+  margin-top: 20px; /* Margen superior para separar del contenido anterior */
+  color: #333;  /* Color básico para el texto */
+}
+
+/* Párrafos dentro de PlanResult */
+.plan-result p {
+  margin: 12px 0;  /* Espaciado entre líneas */
+  font-size: 18px;  /* Tamaño de fuente estándar */
+}
+
+/* Encabezados dentro de PlanResult */
+.plan-result h2, .plan-result h3 {
+  margin-top: 15px;
+  font-size: 22px;  /* Tamaño de los encabezados */
+  color: #000;  /* Color de los encabezados en negro */
+}
+
+/* Negritas para destacar valores */
+.plan-result strong {
+  font-weight: bold;
+  color: #000;  /* Aseguramos que el color sea negro para visibilidad */
+}
