@@ -51,6 +51,7 @@ const Form = ({ setPlan }) => {
       const response = await axios.post('http://localhost:8000/generate_plan/', userData);
       console.log('Respuesta del backend:', response.data);
       setPlan(response.data);
+      
     } catch (error) {
       console.error('Error fetching the plan:', error);
     }
