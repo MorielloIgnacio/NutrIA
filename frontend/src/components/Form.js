@@ -2,17 +2,26 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const Form = ({ setPlan }) => {
-  // Estados para todos los campos del formulario
+  // Estados para todos los campos del formulario básico
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
   const [activityLevel, setActivityLevel] = useState('');
   const [dietaryRestrictions, setDietaryRestrictions] = useState([]);
+  const [dislikedFoods, setDislikedFoods] = useState(''); // Alimentos que no le gustan
   const [trainingPreference, setTrainingPreference] = useState([]);
   const [fitnessGoals, setFitnessGoals] = useState([]);
 
-  const [step, setStep] = useState(0); // Estado para controlar el paso actual del carrusel
+  // Estados para datos avanzados y dispositivos inteligentes
+  const [advanced, setAdvanced] = useState(false);
+  const [bodyFat, setBodyFat] = useState('');
+  const [muscleMass, setMuscleMass] = useState('');
+  const [heartRate, setHeartRate] = useState('');
+  const [steps, setSteps] = useState('');
+  const [smartDevice, setSmartDevice] = useState(false); // Sincronización con dispositivos
+
+  const [step, setStep] = useState(0);
 
   const handleCheckboxChange = (setState, value, state) => {
     if (state.includes(value)) {
@@ -31,9 +40,9 @@ const Form = ({ setPlan }) => {
       return;
     }
 
-    // Convertimos routine_preference en una cadena separada por comas
     const formattedRoutinePreference = trainingPreference.length > 0 ? trainingPreference.join(', ') : "Ninguno";
 
+    // Datos del usuario básico + avanzado si se activó + dispositivos si se seleccionó
     const userData = {
       weight: parseFloat(weight),
       height: parseFloat(height),
@@ -41,8 +50,17 @@ const Form = ({ setPlan }) => {
       gender,
       activity_level: activityLevel,
       goals: fitnessGoals,
-      routine_preference: formattedRoutinePreference, // Ahora es una cadena en lugar de un array
-      dietary_restrictions: dietaryRestrictions
+      routine_preference: formattedRoutinePreference,
+      dietary_restrictions: dietaryRestrictions,
+      disliked_foods: dislikedFoods, // Incluye alimentos que no le gustan
+      ...(advanced && {
+        body_fat: parseFloat(bodyFat),
+        muscle_mass: parseFloat(muscleMass),
+      }),
+      ...(smartDevice && {
+        heart_rate: parseFloat(heartRate),
+        steps: parseInt(steps),
+      })
     };
 
     console.log('Enviando datos al backend:', userData);
@@ -57,9 +75,8 @@ const Form = ({ setPlan }) => {
     }
   };
 
-  // Funciones para moverse entre pasos del carrusel
-  const nextStep = () => setStep(step + 1);
-  const prevStep = () => setStep(step - 1);
+  const nextStep = () => setStep((prevStep) => Math.min(prevStep + 1, 5));
+  const prevStep = () => setStep((prevStep) => Math.max(prevStep - 1, 0));
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-white font-['Noto_Sans', 'Work_Sans', sans-serif]">
@@ -152,12 +169,91 @@ const Form = ({ setPlan }) => {
           </div>
         )}
 
+        {/* Sección avanzada */}
         {step === 2 && (
           <div>
+            <h3 className="text-2xl font-bold leading-tight pb-2">Datos avanzados y dispositivos</h3>
+            <label className="block pb-2">
+              <input type="checkbox" checked={advanced} onChange={(e) => setAdvanced(e.target.checked)} />
+              <span className="ml-2">Proveer datos avanzados</span>
+            </label>
+
+            {advanced && (
+              <div>
+                {/* Porcentaje de grasa corporal */}
+                <div className="px-4 py-3">
+                  <label className="block pb-2">
+                    <span className="text-base font-medium text-[#111418]">Porcentaje de grasa corporal (%)</span>
+                    <input
+                      type="number"
+                      className="form-input w-full mt-1 p-3 border rounded-xl h-14 border-[#dce0e5] text-[#111418] placeholder:text-[#637588]"
+                      value={bodyFat}
+                      onChange={(e) => setBodyFat(e.target.value)}
+                    />
+                  </label>
+                </div>
+                {/* Masa muscular */}
+                <div className="px-4 py-3">
+                  <label className="block pb-2">
+                    <span className="text-base font-medium text-[#111418]">Masa muscular (kg)</span>
+                    <input
+                      type="number"
+                      className="form-input w-full mt-1 p-3 border rounded-xl h-14 border-[#dce0e5] text-[#111418] placeholder:text-[#637588]"
+                      value={muscleMass}
+                      onChange={(e) => setMuscleMass(e.target.value)}
+                    />
+                  </label>
+                </div>
+              </div>
+            )}
+
+            {/* Sincronización con dispositivos inteligentes */}
+            <label className="block mt-4">
+              <input
+                type="checkbox"
+                checked={smartDevice}
+                onChange={(e) => setSmartDevice(e.target.checked)}
+              />
+              <span className="ml-2">Sincronizar con un dispositivo inteligente</span>
+            </label>
+
+            {smartDevice && (
+              <div className="mt-4">
+                {/* Frecuencia cardíaca */}
+                <div className="px-4 py-3">
+                  <label className="block pb-2">
+                    <span className="text-base font-medium text-[#111418]">Frecuencia cardíaca en reposo (BPM)</span>
+                    <input
+                      type="number"
+                      className="form-input w-full mt-1 p-3 border rounded-xl h-14 border-[#dce0e5] text-[#111418] placeholder:text-[#637588]"
+                      value={heartRate}
+                      onChange={(e) => setHeartRate(e.target.value)}
+                    />
+                  </label>
+                </div>
+                {/* Pasos diarios */}
+                <div className="px-4 py-3">
+                  <label className="block pb-2">
+                    <span className="text-base font-medium text-[#111418]">Pasos diarios</span>
+                    <input
+                      type="number"
+                      className="form-input w-full mt-1 p-3 border rounded-xl h-14 border-[#dce0e5] text-[#111418] placeholder:text-[#637588]"
+                      value={steps}
+                      onChange={(e) => setSteps(e.target.value)}
+                    />
+                  </label>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Preferencias alimenticias */}
+        {step === 3 && (
+          <div>
             <h3 className="text-2xl font-bold leading-tight pb-2">Preferencias alimenticias</h3>
-            {/* Preferencias alimenticias */}
             <div className="flex gap-3 p-3 flex-wrap">
-              {['Vegetariano', 'Vegano', 'Sin gluten', 'Sin lactosa', 'Sin nueces', 'Dieta cetogénica'].map((preference) => (
+              {['Sin restricciones', 'Vegetariano', 'Vegano', 'Sin gluten', 'Sin lactosa', 'Sin nueces', 'Dieta cetogénica'].map((preference) => (
                 <div
                   key={preference}
                   onClick={() => handleCheckboxChange(setDietaryRestrictions, preference, dietaryRestrictions)}
@@ -169,13 +265,26 @@ const Form = ({ setPlan }) => {
                 </div>
               ))}
             </div>
+            {/* Alimentos que no le gustan */}
+            <div className="px-4 py-3 mt-4">
+              <label className="block pb-2">
+                <span className="text-base font-medium text-[#111418]">Alimentos que prefieres evitar</span>
+                <input
+                  type="text"
+                  className="form-input w-full mt-1 p-3 border rounded-xl h-14 border-[#dce0e5] text-[#111418] placeholder:text-[#637588]"
+                  placeholder="Ej. Brócoli, pescado"
+                  value={dislikedFoods}
+                  onChange={(e) => setDislikedFoods(e.target.value)}
+                />
+              </label>
+            </div>
           </div>
         )}
 
-        {step === 3 && (
+        {/* Tipo de entrenamiento */}
+        {step === 4 && (
           <div>
             <h3 className="text-2xl font-bold leading-tight pb-2">Tipo de entrenamiento</h3>
-            {/* Preferencias de entrenamiento */}
             <div className="flex gap-3 p-3 flex-wrap">
               {['Ejercicio en casa', 'Ejercicio al aire libre', 'Ejercicio en el gimnasio', 'Ninguno', 'No estoy seguro'].map((preference) => (
                 <div
@@ -192,10 +301,10 @@ const Form = ({ setPlan }) => {
           </div>
         )}
 
-        {step === 4 && (
+        {/* Objetivos de Fitness */}
+        {step === 5 && (
           <div>
             <h3 className="text-2xl font-bold leading-tight pb-2">Objetivos de Fitness</h3>
-            {/* Objetivos de fitness */}
             <div className="flex gap-3 p-3 flex-wrap">
               {['Perder peso', 'Ganar masa muscular', 'Mejorar la salud', 'Mejorar el rendimiento'].map((goal) => (
                 <div
@@ -223,7 +332,7 @@ const Form = ({ setPlan }) => {
               Anterior
             </button>
           )}
-          {step < 4 ? (
+          {step < 5 ? (
             <button
               type="button"
               className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
