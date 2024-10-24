@@ -1,16 +1,50 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-    const handleSubmit = (event) => {
+    const validateEmail = (email) => {
+        // Expresión regular para validar el formato del email
+        return /\S+@\S+\.\S+/.test(email);
+    };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Simular autenticación por ahora
-        if (email && password) {
-            onLogin();
-        } else {
-            alert("Por favor ingrese sus credenciales.");
+        setError('');
+
+        // Validar los campos de email y contraseña antes de enviar
+        if (!validateEmail(email)) {
+            setError('Por favor, introduce un correo electrónico válido.');
+            return;
+        }
+
+        if (password.length < 6) {
+            setError('La contraseña debe tener al menos 6 caracteres.');
+            return;
+        }
+
+        try {
+            // Realizar la solicitud al backend
+            const response = await axios.post('/api/login', {
+                email,
+                password,
+            });
+
+            // Verificar si la respuesta es exitosa
+            if (response.data.success) {
+                // Llamar a la función onLogin del componente padre
+                onLogin();
+                // Guardar el token en localStorage si es necesario
+                localStorage.setItem('token', response.data.token);
+            } else {
+                setError('Correo electrónico o contraseña incorrectos.');
+            }
+        } catch (error) {
+            console.error('Error en el inicio de sesión:', error);
+            setError('Hubo un problema con el servidor. Intenta de nuevo más tarde.');
         }
     };
 
@@ -21,8 +55,8 @@ const Login = ({ onLogin }) => {
                     <div className="w-[512px] max-w-[512px] py-5 flex flex-col">
                         <div 
                             className="w-full bg-center bg-no-repeat bg-cover flex justify-end overflow-hidden bg-white rounded-xl min-h-[300px]" 
-                            style={{ backgroundImage: `url('/images/Logo.png')` }}  // Ruta de la imagen en `public`
-                            >
+                            style={{ backgroundImage: `url('/images/Logo.png')` }} 
+                        >
                         </div>
                         <h1 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] text-center pb-3 pt-5">
                             Vamos a iniciar sesión
@@ -33,6 +67,7 @@ const Login = ({ onLogin }) => {
                                 <label className="flex flex-col min-w-40 flex-1">
                                     <p className="text-[#111418] text-base font-medium leading-normal pb-2">Correo electrónico</p>
                                     <input
+                                        type="email"
                                         placeholder="ejemplo@gmail.com"
                                         className="form-input flex w-full resize-none rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] h-14 placeholder:text-[#637588] p-[15px] text-base"
                                         value={email}
@@ -52,6 +87,7 @@ const Login = ({ onLogin }) => {
                                     />
                                 </label>
                             </div>
+                            {error && <p className="text-red-500 text-center px-4 py-2">{error}</p>}
                             <div className="flex px-4 py-3">
                                 <button
                                     type="submit"
