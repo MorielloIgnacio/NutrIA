@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NutritionPlan = ({ plan }) => {
+const NutritionPlan = ({ plan, onStartFirstDay }) => {
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-4">Your Plan</h1>
@@ -52,7 +52,7 @@ const NutritionPlan = ({ plan }) => {
 
       {/* Button to Start Plan */}
       <div className="mt-8">
-        <button className="px-6 py-3 bg-yellow-500 text-white rounded-lg font-bold hover:bg-yellow-600">
+        <button onClick={onStartFirstDay}className="px-6 py-3 bg-yellow-500 text-white rounded-lg font-bold hover:bg-yellow-600">
           Start Day 1
         </button>
       </div>

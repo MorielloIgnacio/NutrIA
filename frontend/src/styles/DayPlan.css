@@ -1,0 +1,155 @@
+/* DayPlan.css */
+
+.day-plan-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.items-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item, .feedback-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.item-icon {
+    font-size: 2rem;
+}
+
+.item-details {
+    flex-grow: 1;
+    margin-left: 1rem;
+}
+
+.item-name {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.item-time {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.feedback-item {
+    justify-content: space-between;
+}
+
+.feedback-name {
+    flex-grow: 1;
+    margin-right: 1rem;
+    font-size: 1.125rem;
+    color: #333;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button-secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.button-secondary:hover {
+    background: #d0d0d0;
+}
+
+.button-primary {
+    background: #5fdd54;
+    color: #fff;
+}
+
+.button-primary:hover {
+    background: #4ccc44;
+}
+
+/* DayPlan.css */
+
+/* The switch - the box around the slider */
+.switch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 62px;
+    height: 35px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    transition: .4s;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 1.9em;
+    width: 1.9em;
+    border-radius: 16px;
+    left: 1.2px;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 2px 5px #999999;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #5fdd54;
+    border: 1px solid transparent;
+}
+
+input:checked + .slider:before {
+    transform: translateX(1.5em);
+}
