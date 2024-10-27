@@ -9,7 +9,7 @@ const Form = ({ setPlan }) => {
   const [gender, setGender] = useState('');
   const [activityLevel, setActivityLevel] = useState('');
   const [dietaryRestrictions, setDietaryRestrictions] = useState([]);
-  const [dislikedFoods, setDislikedFoods] = useState(''); // Alimentos que no le gustan
+  const [dislikedFoods, setDislikedFoods] = useState('');
   const [trainingPreference, setTrainingPreference] = useState([]);
   const [fitnessGoals, setFitnessGoals] = useState([]);
 
@@ -19,59 +19,80 @@ const Form = ({ setPlan }) => {
   const [muscleMass, setMuscleMass] = useState('');
   const [heartRate, setHeartRate] = useState('');
   const [steps, setSteps] = useState('');
-  const [smartDevice, setSmartDevice] = useState(false); // Sincronización con dispositivos
+  const [smartDevice, setSmartDevice] = useState(false);
 
   const [step, setStep] = useState(0);
+  const [errors, setErrors] = useState({}); // Estado de errores
+
+  const validateForm = () => {
+    const newErrors = {};
+  
+    // Validación para el peso
+    if (!weight || isNaN(weight) || weight < 20 || weight > 500) {
+      newErrors.weight = 'El peso debe estar entre 20 kg y 500 kg';
+    }
+  
+    // Validación para la altura
+    if (!height || isNaN(height) || height < 50 || height > 300) {
+      newErrors.height = 'La altura debe estar entre 50 cm y 300 cm';
+    }
+  
+    // Validación para la edad
+    if (!age || isNaN(age) || age < 10 || age > 120) {
+      newErrors.age = 'La edad debe estar entre 10 y 120 años';
+    }
+  
+    // Validación para el género
+    if (!gender) {
+      newErrors.gender = 'Selecciona un género';
+    }
+  
+    // Validación para el nivel de actividad
+    if (!activityLevel) {
+      newErrors.activityLevel = 'Selecciona un nivel de actividad';
+    }
+  
+    // Validación para los objetivos de fitness
+    if (fitnessGoals.length === 0) {
+      newErrors.fitnessGoals = 'Selecciona al menos un objetivo de fitness';
+    }
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      const userData = {
+        weight: parseFloat(weight),
+        height: parseFloat(height),
+        age: parseInt(age),
+        gender,
+        activity_level: activityLevel,
+        goals: fitnessGoals,
+        routine_preference: trainingPreference.join(', ') || 'Ninguno',
+        dietary_restrictions: dietaryRestrictions,
+        disliked_foods: dislikedFoods,
+        ...(advanced && { body_fat: parseFloat(bodyFat), muscle_mass: parseFloat(muscleMass) }),
+        ...(smartDevice && { heart_rate: parseFloat(heartRate), steps: parseInt(steps) })
+      };
+
+      try {
+        const response = await axios.post('http://localhost:8000/generate_plan/', userData);
+        setPlan(response.data);
+      } catch (error) {
+        console.error('Error al obtener el plan:', error);
+      }
+    }
+  };
 
   const handleCheckboxChange = (setState, value, state) => {
     if (state.includes(value)) {
       setState(state.filter((item) => item !== value));
     } else {
       setState([...state, value]);
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    // Validar que se haya seleccionado al menos un objetivo de fitness
-    if (fitnessGoals.length === 0) {
-      alert('Por favor selecciona al menos un objetivo de fitness');
-      return;
-    }
-
-    const formattedRoutinePreference = trainingPreference.length > 0 ? trainingPreference.join(', ') : "Ninguno";
-
-    // Datos del usuario básico + avanzado si se activó + dispositivos si se seleccionó
-    const userData = {
-      weight: parseFloat(weight),
-      height: parseFloat(height),
-      age: parseInt(age),
-      gender,
-      activity_level: activityLevel,
-      goals: fitnessGoals,
-      routine_preference: formattedRoutinePreference,
-      dietary_restrictions: dietaryRestrictions,
-      disliked_foods: dislikedFoods, // Incluye alimentos que no le gustan
-      ...(advanced && {
-        body_fat: parseFloat(bodyFat),
-        muscle_mass: parseFloat(muscleMass),
-      }),
-      ...(smartDevice && {
-        heart_rate: parseFloat(heartRate),
-        steps: parseInt(steps),
-      })
-    };
-
-    console.log('Enviando datos al backend:', userData);
-
-    try {
-      const response = await axios.post('http://localhost:8000/generate_plan/', userData);
-      console.log('Respuesta del backend:', response.data);
-      setPlan(response.data);
-      
-    } catch (error) {
-      console.error('Error fetching the plan:', error);
     }
   };
 
@@ -82,11 +103,10 @@ const Form = ({ setPlan }) => {
     <div className="flex flex-col items-center min-h-screen bg-white font-['Noto_Sans', 'Work_Sans', sans-serif]">
       <form onSubmit={handleSubmit} className="w-[512px] max-w-full p-8 bg-white rounded-lg shadow-md">
 
-        {/* Renderizado condicional basado en el paso actual */}
+        {/* Paso 0: Datos Personales */}
         {step === 0 && (
           <div>
             <h3 className="text-2xl font-bold leading-tight pb-2">Datos Personales</h3>
-            {/* Peso */}
             <div className="px-4 py-3">
               <label className="block pb-2">
                 <span className="text-base font-medium text-[#111418]">Peso (kg)</span>
@@ -97,9 +117,9 @@ const Form = ({ setPlan }) => {
                   onChange={(e) => setWeight(e.target.value)}
                   required
                 />
+                {errors.weight && <p style={{ color: 'red' }}>{errors.weight}</p>}
               </label>
             </div>
-            {/* Altura */}
             <div className="px-4 py-3">
               <label className="block pb-2">
                 <span className="text-base font-medium text-[#111418]">Altura (cm)</span>
@@ -110,9 +130,9 @@ const Form = ({ setPlan }) => {
                   onChange={(e) => setHeight(e.target.value)}
                   required
                 />
+                {errors.height && <p style={{ color: 'red' }}>{errors.height}</p>}
               </label>
             </div>
-            {/* Edad */}
             <div className="px-4 py-3">
               <label className="block pb-2">
                 <span className="text-base font-medium text-[#111418]">Edad</span>
@@ -123,15 +143,16 @@ const Form = ({ setPlan }) => {
                   onChange={(e) => setAge(e.target.value)}
                   required
                 />
+                {errors.age && <p style={{ color: 'red' }}>{errors.age}</p>}
               </label>
             </div>
           </div>
         )}
 
+        {/* Paso 1: Información adicional */}
         {step === 1 && (
           <div>
             <h3 className="text-2xl font-bold leading-tight pb-2">Información adicional</h3>
-            {/* Género */}
             <div className="px-4 py-3">
               <label className="block pb-2">
                 <span className="text-base font-medium text-[#111418]">Sexo</span>
@@ -145,9 +166,9 @@ const Form = ({ setPlan }) => {
                   <option value="male">Hombre</option>
                   <option value="female">Mujer</option>
                 </select>
+                {errors.gender && <p style={{ color: 'red' }}>{errors.gender}</p>}
               </label>
             </div>
-            {/* Nivel de actividad */}
             <div className="px-4 py-3">
               <label className="block pb-2">
                 <span className="text-base font-medium text-[#111418]">Nivel de actividad</span>
@@ -164,12 +185,13 @@ const Form = ({ setPlan }) => {
                   <option value="very_active">Muy activo</option>
                   <option value="super_active">Súper activo</option>
                 </select>
+                {errors.activityLevel && <p style={{ color: 'red' }}>{errors.activityLevel}</p>}
               </label>
             </div>
           </div>
         )}
 
-        {/* Sección avanzada */}
+        {/* Paso 2: Datos avanzados y dispositivos */}
         {step === 2 && (
           <div>
             <h3 className="text-2xl font-bold leading-tight pb-2">Datos avanzados y dispositivos</h3>
@@ -180,7 +202,6 @@ const Form = ({ setPlan }) => {
 
             {advanced && (
               <div>
-                {/* Porcentaje de grasa corporal */}
                 <div className="px-4 py-3">
                   <label className="block pb-2">
                     <span className="text-base font-medium text-[#111418]">Porcentaje de grasa corporal (%)</span>
@@ -192,7 +213,6 @@ const Form = ({ setPlan }) => {
                     />
                   </label>
                 </div>
-                {/* Masa muscular */}
                 <div className="px-4 py-3">
                   <label className="block pb-2">
                     <span className="text-base font-medium text-[#111418]">Masa muscular (kg)</span>
@@ -207,7 +227,6 @@ const Form = ({ setPlan }) => {
               </div>
             )}
 
-            {/* Sincronización con dispositivos inteligentes */}
             <label className="block mt-4">
               <input
                 type="checkbox"
@@ -219,7 +238,6 @@ const Form = ({ setPlan }) => {
 
             {smartDevice && (
               <div className="mt-4">
-                {/* Frecuencia cardíaca */}
                 <div className="px-4 py-3">
                   <label className="block pb-2">
                     <span className="text-base font-medium text-[#111418]">Frecuencia cardíaca en reposo (BPM)</span>
@@ -231,7 +249,6 @@ const Form = ({ setPlan }) => {
                     />
                   </label>
                 </div>
-                {/* Pasos diarios */}
                 <div className="px-4 py-3">
                   <label className="block pb-2">
                     <span className="text-base font-medium text-[#111418]">Pasos diarios</span>
@@ -248,7 +265,7 @@ const Form = ({ setPlan }) => {
           </div>
         )}
 
-        {/* Preferencias alimenticias */}
+        {/* Paso 3: Preferencias alimenticias */}
         {step === 3 && (
           <div>
             <h3 className="text-2xl font-bold leading-tight pb-2">Preferencias alimenticias</h3>
@@ -265,7 +282,6 @@ const Form = ({ setPlan }) => {
                 </div>
               ))}
             </div>
-            {/* Alimentos que no le gustan */}
             <div className="px-4 py-3 mt-4">
               <label className="block pb-2">
                 <span className="text-base font-medium text-[#111418]">Alimentos que prefieres evitar</span>
@@ -281,7 +297,7 @@ const Form = ({ setPlan }) => {
           </div>
         )}
 
-        {/* Tipo de entrenamiento */}
+        {/* Paso 4: Tipo de entrenamiento */}
         {step === 4 && (
           <div>
             <h3 className="text-2xl font-bold leading-tight pb-2">Tipo de entrenamiento</h3>
@@ -301,7 +317,7 @@ const Form = ({ setPlan }) => {
           </div>
         )}
 
-        {/* Objetivos de Fitness */}
+        {/* Paso 5: Objetivos de Fitness */}
         {step === 5 && (
           <div>
             <h3 className="text-2xl font-bold leading-tight pb-2">Objetivos de Fitness</h3>
