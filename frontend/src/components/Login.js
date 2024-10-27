@@ -5,46 +5,46 @@ const Login = ({ onLogin }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const validateEmail = (email) => {
-        // Expresión regular para validar el formato del email
         return /\S+@\S+\.\S+/.test(email);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError('');
+        setIsLoading(true);
 
-        // Validar los campos de email y contraseña antes de enviar
         if (!validateEmail(email)) {
             setError('Por favor, introduce un correo electrónico válido.');
+            setIsLoading(false);
             return;
         }
 
         if (password.length < 6) {
             setError('La contraseña debe tener al menos 6 caracteres.');
+            setIsLoading(false);
             return;
         }
 
         try {
-            // Realizar la solicitud al backend
-            const response = await axios.post('/api/login', {
+            const response = await axios.post('http://localhost:5000/api/login', {
                 email,
                 password,
             });
 
-            // Verificar si la respuesta es exitosa
             if (response.data.success) {
-                // Llamar a la función onLogin del componente padre
                 onLogin();
-                // Guardar el token en localStorage si es necesario
                 localStorage.setItem('token', response.data.token);
             } else {
-                setError('Correo electrónico o contraseña incorrectos.');
+                setError(response.data.message || 'Correo electrónico o contraseña incorrectos.');
             }
         } catch (error) {
             console.error('Error en el inicio de sesión:', error);
             setError('Hubo un problema con el servidor. Intenta de nuevo más tarde.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -92,8 +92,11 @@ const Login = ({ onLogin }) => {
                                 <button
                                     type="submit"
                                     className="w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#1980e6] text-white text-sm font-bold tracking-[0.015em]"
+                                    disabled={isLoading}
                                 >
-                                    <span className="truncate">Iniciar Sesión</span>
+                                    <span className="truncate">
+                                        {isLoading ? 'Iniciando...' : 'Iniciar Sesión'}
+                                    </span>
                                 </button>
                             </div>
                         </form>
