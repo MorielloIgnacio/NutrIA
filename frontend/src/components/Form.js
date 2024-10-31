@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const Form = ({ setPlan }) => {
+const Form = ({ setPlan, setHasPlan }) => {
   // Estados para todos los campos del formulario básico
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
@@ -65,7 +65,7 @@ const Form = ({ setPlan }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      const userData = {
+        const userData = {
         weight: parseFloat(weight),
         height: parseFloat(height),
         age: parseInt(age),
@@ -82,11 +82,12 @@ const Form = ({ setPlan }) => {
       try {
         const response = await axios.post('http://localhost:8000/generate_plan/', userData);
         setPlan(response.data);
-      } catch (error) {
+        setHasPlan(true); // Actualiza hasPlan a true
+    } catch (error) {
         console.error('Error al obtener el plan:', error);
-      }
     }
-  };
+}
+};
 
   const handleCheckboxChange = (setState, value, state) => {
     if (state.includes(value)) {

@@ -13,6 +13,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.post("/api/reset-plan")
+async def reset_plan():
+    # Lógica para restablecer el plan del usuario (por ejemplo, eliminarlo de la base de datos)
+    return {"success": True}
+
+@app.get("/api/check-plan")
+async def check_plan():
+    # Simulación de respuesta; ajusta según tu lógica
+    user_has_plan = True  # Cambia esto a la lógica real para verificar el plan
+    plan_data = {"name": "Plan de ejemplo"} if user_has_plan else None
+    return {"hasPlan": user_has_plan, "plan": plan_data}
+
+
 # Datos que recibimos del frontend
 from pydantic import BaseModel, Field
 from typing import List, Optional
