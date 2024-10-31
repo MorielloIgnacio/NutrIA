@@ -16,18 +16,28 @@ const App = () => {
         if (isAuthenticated) {
             const checkUserPlan = async () => {
                 try {
-                    const response = await fetch('/api/check-plan', {
+                    const response = await fetch('http://127.0.0.1:8000/api/check-plan', {
                         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                     });
-                    const data = await response.json();
-                    setHasPlan(data.hasPlan);
-                    if (data.hasPlan) {
-                        setPlan(data.plan); // Guardar el plan si ya existe
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const contentType = response.headers.get('content-type');
+                    if (contentType && contentType.includes('application/json')) {
+                        const data = await response.json();
+                        setHasPlan(data.hasPlan);
+                        if (data.hasPlan) {
+                            setPlan(data.plan);
+                        }
+                    } else {
+                        const text = await response.text();
+                        console.error('Respuesta no JSON recibida:', text);
                     }
                 } catch (error) {
                     console.error('Error al verificar el plan del usuario:', error);
                 }
             };
+            
             checkUserPlan();
         }
     }, [isAuthenticated]);
@@ -44,6 +54,11 @@ const App = () => {
         setCurrentDay(null); // Volver a la vista general después de completar un día
     };
 
+    const handleDeletePlan = () => {
+        setPlan(null);
+        setHasPlan(false);
+    };
+
     return (
         <div className="App">
             {isAuthenticated && <Navbar />}
@@ -53,9 +68,9 @@ const App = () => {
             ) : currentDay ? (
                 <DayPlan dayNumber={currentDay} onEndDay={handleEndDay} />
             ) : hasPlan ? (
-                <NutritionPlan plan={plan} onStartFirstDay={handleStartFirstDay} />
+                <NutritionPlan plan={plan} onStartFirstDay={handleStartFirstDay} onDeletePlan={handleDeletePlan} />
             ) : (
-                <Form setPlan={setPlan} />
+                <Form setPlan={setPlan} setHasPlan={setHasPlan} /> // Asegúrate de pasar setHasPlan como prop
             )}
         </div>
     );
