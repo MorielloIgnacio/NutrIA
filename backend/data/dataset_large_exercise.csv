@@ -1,0 +1,201 @@
+weight,height,age,gender,activity_level,goals,routine_preference,dietary_restrictions,recommended_routine
+55,162,65,1,3,['Perder peso'],Ejercicios cardiovasculares,['Vegano'],HIIT en casa
+92,181,18,1,2,['Reducir estrés'],Ejercicios cardiovasculares,['Sin gluten'],HIIT en casa
+70,185,42,1,1,['Perder peso'],Entrenamiento de fuerza,['Sin frutos secos'],Clase de spinning
+68,187,30,1,3,['Mantener condición física'],Ejercicio en casa,['Sin azúcar'],HIIT en casa
+99,199,47,0,1,['Perder peso'],Ejercicio en el gimnasio,['Sin azúcar'],HIIT en casa
+63,200,42,0,1,['Ganar masa muscular'],Ejercicios cardiovasculares,['Vegano'],Clases de pilates
+57,157,19,0,2,['Ganar masa muscular'],Ejercicio en el gimnasio,['Vegetariano'],Caminata al aire libre
+51,198,51,1,2,['Mejorar flexibilidad'],Yoga y meditación,['Sin azúcar'],Rutina de cardio en casa
+65,175,48,0,2,['Perder peso'],Ejercicio en casa,['Vegetariano'],Rutina de cardio en casa
+72,154,26,1,1,['Mantener condición física'],Entrenamiento al aire libre,['Sin gluten'],Clases de pilates
+95,190,64,1,3,['Perder peso'],Ejercicio en casa,['Sin frutos secos'],Circuito de resistencia en el gimnasio
+70,174,31,0,1,['Perder peso'],Ejercicio en casa,['Vegano'],Caminata al aire libre
+62,159,28,0,2,['Perder peso'],Entrenamiento al aire libre,['Sin lactosa'],Natación en piscina cubierta
+74,170,29,1,3,['Perder peso'],Ejercicio en casa,[],HIIT en casa
+69,151,22,0,1,['Aumentar resistencia'],Ejercicio en casa,['Sin lácteos'],Clases de pilates
+51,160,55,0,3,['Reducir estrés'],Entrenamiento de fuerza,['Sin lácteos'],Rutina de cardio en casa
+74,184,55,0,3,['Ganar masa muscular'],Ejercicio en el gimnasio,['Sin frutos secos'],Yoga para principiantes
+84,176,33,0,1,['Aumentar resistencia'],Yoga y meditación,['Sin lácteos'],Yoga para principiantes
+87,198,61,0,1,['Aumentar resistencia'],Entrenamiento de fuerza,['Sin lácteos'],HIIT en casa
+52,162,62,0,1,['Ganar masa muscular'],Ejercicio en casa,['Vegetariano'],Rutina de cardio en casa
+66,151,46,1,1,['Aumentar resistencia'],Ejercicio en casa,['Sin azúcar'],Yoga para principiantes
+68,171,54,0,2,['Perder peso'],Yoga y meditación,['Sin frutos secos'],Clase de spinning
+95,152,29,1,1,['Ganar masa muscular'],Ejercicio en casa,['Sin lactosa'],Natación en piscina cubierta
+91,200,50,0,2,['Mejorar flexibilidad'],Yoga y meditación,['Vegano'],Circuito de resistencia en el gimnasio
+97,160,39,1,3,['Mejorar flexibilidad'],Yoga y meditación,['Sin frutos secos'],Entrenamiento de pesas en el gimnasio
+75,192,36,0,3,['Perder peso'],Ejercicios cardiovasculares,['Sin frutos secos'],Entrenamiento de pesas en el gimnasio
+60,192,36,1,1,['Reducir estrés'],Entrenamiento al aire libre,['Sin azúcar'],Natación en piscina cubierta
+69,181,29,1,3,['Mantener condición física'],Ejercicio en casa,[],Correr en el parque
+52,191,50,1,2,['Reducir estrés'],Ejercicio en el gimnasio,['Sin gluten'],Correr en el parque
+100,156,36,0,3,['Perder peso'],Ejercicio en casa,['Sin lácteos'],Yoga para principiantes
+84,175,33,0,1,['Perder peso'],Ejercicio en el gimnasio,[],Rutina de cardio en casa
+84,172,57,0,2,['Mejorar flexibilidad'],Yoga y meditación,['Sin frutos secos'],Clase de spinning
+53,192,22,1,1,['Perder peso'],Ejercicio en casa,[],Clases de pilates
+56,196,45,0,2,['Ganar masa muscular'],Ejercicio en casa,['Sin azúcar'],Clase de spinning
+92,172,42,0,3,['Aumentar resistencia'],Ejercicio en casa,['Vegano'],Circuito de resistencia en el gimnasio
+88,182,19,1,2,['Mejorar flexibilidad'],Ejercicios cardiovasculares,['Sin azúcar'],Caminata al aire libre
+93,197,56,1,3,['Mejorar flexibilidad'],Entrenamiento de fuerza,['Sin azúcar'],Circuito de resistencia en el gimnasio
+95,195,58,0,1,['Perder peso'],Ejercicio en casa,['Sin frutos secos'],Correr en el parque
+65,173,19,0,3,['Mejorar flexibilidad'],Ejercicio en el gimnasio,['Sin lactosa'],HIIT en casa
+94,188,47,0,1,['Aumentar resistencia'],Yoga y meditación,['Sin azúcar'],Yoga para principiantes
+72,178,46,0,2,['Mejorar flexibilidad'],Ejercicios cardiovasculares,['Sin gluten'],HIIT en casa
+65,169,54,1,2,['Ganar masa muscular'],Entrenamiento de fuerza,['Sin gluten'],Caminata al aire libre
+50,162,33,1,1,['Reducir estrés'],Ejercicio en casa,['Sin azúcar'],Caminata al aire libre
+68,150,50,0,1,['Ganar masa muscular'],Yoga y meditación,['Sin gluten'],Entrenamiento de pesas en el gimnasio
+61,153,53,1,2,['Mantener condición física'],Ejercicio en el gimnasio,[],Entrenamiento de pesas en el gimnasio
+72,178,57,1,3,['Perder peso'],Yoga y meditación,['Vegano'],Natación en piscina cubierta
+55,195,22,0,1,['Mantener condición física'],Entrenamiento al aire libre,['Sin gluten'],Clases de pilates
+64,156,64,1,1,['Mantener condición física'],Entrenamiento de fuerza,['Sin gluten'],Entrenamiento de pesas en el gimnasio
+78,169,51,0,2,['Mantener condición física'],Entrenamiento al aire libre,['Sin lácteos'],Caminata al aire libre
+72,160,45,0,1,['Reducir estrés'],Ejercicio en casa,['Sin lácteos'],Natación en piscina cubierta
+88,190,22,0,1,['Mantener condición física'],Entrenamiento al aire libre,['Sin azúcar'],Natación en piscina cubierta
+63,151,53,1,3,['Aumentar resistencia'],Ejercicio en el gimnasio,['Vegano'],Rutina de cardio en casa
+64,155,56,1,1,['Aumentar resistencia'],Yoga y meditación,['Sin azúcar'],Clase de spinning
+59,160,46,0,2,['Ganar masa muscular'],Yoga y meditación,[],Natación en piscina cubierta
+79,151,58,0,2,['Reducir estrés'],Entrenamiento de fuerza,['Vegano'],Clase de spinning
+82,168,40,1,2,['Perder peso'],Entrenamiento de fuerza,['Sin frutos secos'],Natación en piscina cubierta
+73,194,36,1,2,['Reducir estrés'],Entrenamiento de fuerza,[],Natación en piscina cubierta
+94,186,60,1,2,['Mantener condición física'],Ejercicios cardiovasculares,['Sin azúcar'],Entrenamiento de pesas en el gimnasio
+56,199,23,0,3,['Mejorar flexibilidad'],Entrenamiento al aire libre,['Sin lactosa'],Correr en el parque
+58,156,44,0,2,['Perder peso'],Ejercicio en casa,['Sin lactosa'],Clases de pilates
+83,161,40,0,3,['Ganar masa muscular'],Ejercicio en el gimnasio,['Sin azúcar'],Entrenamiento de pesas en el gimnasio
+58,195,49,1,3,['Reducir estrés'],Yoga y meditación,['Sin lácteos'],HIIT en casa
+67,198,65,0,1,['Perder peso'],Ejercicios cardiovasculares,['Vegano'],Entrenamiento de pesas en el gimnasio
+55,195,60,0,1,['Aumentar resistencia'],Ejercicio en casa,['Sin frutos secos'],HIIT en casa
+89,170,61,0,2,['Mejorar flexibilidad'],Entrenamiento de fuerza,['Sin lactosa'],Correr en el parque
+92,169,59,1,2,['Ganar masa muscular'],Entrenamiento al aire libre,['Sin azúcar'],HIIT en casa
+77,183,59,1,1,['Mejorar flexibilidad'],Ejercicio en el gimnasio,['Sin lactosa'],Natación en piscina cubierta
+75,193,60,1,1,['Perder peso'],Yoga y meditación,['Sin lactosa'],Rutina de cardio en casa
+57,153,61,0,2,['Perder peso'],Ejercicio en casa,['Sin lactosa'],Yoga para principiantes
+61,150,51,1,3,['Mantener condición física'],Entrenamiento de fuerza,['Vegano'],Yoga para principiantes
+50,181,53,1,1,['Reducir estrés'],Ejercicios cardiovasculares,[],Clases de pilates
+71,174,42,0,1,['Reducir estrés'],Ejercicio en casa,['Sin frutos secos'],Circuito de resistencia en el gimnasio
+59,197,45,0,3,['Mantener condición física'],Ejercicio en el gimnasio,['Sin gluten'],Correr en el parque
+54,166,45,0,3,['Mejorar flexibilidad'],Ejercicio en casa,['Sin gluten'],HIIT en casa
+64,150,49,1,1,['Mejorar flexibilidad'],Ejercicio en casa,['Sin lácteos'],Entrenamiento de pesas en el gimnasio
+50,180,44,1,1,['Ganar masa muscular'],Entrenamiento de fuerza,['Vegano'],Clase de spinning
+86,180,18,0,3,['Ganar masa muscular'],Ejercicios cardiovasculares,['Vegano'],Caminata al aire libre
+96,194,33,0,2,['Reducir estrés'],Entrenamiento al aire libre,['Vegetariano'],Circuito de resistencia en el gimnasio
+51,159,21,1,2,['Reducir estrés'],Ejercicio en casa,['Sin lácteos'],Rutina de cardio en casa
+60,179,45,0,1,['Perder peso'],Entrenamiento al aire libre,['Sin gluten'],Yoga para principiantes
+51,192,43,1,2,['Mantener condición física'],Yoga y meditación,['Sin frutos secos'],Circuito de resistencia en el gimnasio
+87,168,27,0,2,['Reducir estrés'],Ejercicio en casa,[],HIIT en casa
+62,200,31,1,1,['Perder peso'],Ejercicios cardiovasculares,['Vegano'],Caminata al aire libre
+59,179,58,1,3,['Perder peso'],Ejercicio en el gimnasio,['Sin lactosa'],Natación en piscina cubierta
+57,189,63,0,1,['Mantener condición física'],Ejercicios cardiovasculares,['Sin lácteos'],Entrenamiento de pesas en el gimnasio
+54,167,42,1,1,['Perder peso'],Yoga y meditación,['Sin azúcar'],Clases de pilates
+99,171,44,0,3,['Mejorar flexibilidad'],Ejercicios cardiovasculares,['Sin lactosa'],Circuito de resistencia en el gimnasio
+74,163,37,0,3,['Perder peso'],Entrenamiento al aire libre,['Sin gluten'],Clases de pilates
+95,166,53,0,3,['Mantener condición física'],Entrenamiento de fuerza,['Sin frutos secos'],Natación en piscina cubierta
+79,158,65,0,3,['Aumentar resistencia'],Entrenamiento de fuerza,['Sin frutos secos'],Yoga para principiantes
+77,197,54,1,3,['Reducir estrés'],Entrenamiento de fuerza,['Sin gluten'],Caminata al aire libre
+85,176,65,0,1,['Reducir estrés'],Ejercicio en el gimnasio,['Sin gluten'],Clase de spinning
+54,167,48,1,3,['Aumentar resistencia'],Entrenamiento al aire libre,['Sin lactosa'],Rutina de cardio en casa
+55,198,52,1,1,['Reducir estrés'],Ejercicios cardiovasculares,['Sin azúcar'],Natación en piscina cubierta
+72,154,50,0,1,['Perder peso'],Entrenamiento de fuerza,[],Natación en piscina cubierta
+59,193,49,1,2,['Mantener condición física'],Ejercicio en el gimnasio,['Sin gluten'],Natación en piscina cubierta
+71,155,20,1,3,['Mantener condición física'],Ejercicio en casa,['Sin lácteos'],Clase de spinning
+78,182,19,1,1,['Reducir estrés'],Ejercicios cardiovasculares,['Sin frutos secos'],Clases de pilates
+83,200,51,1,1,['Ganar masa muscular'],Ejercicio en casa,['Sin lácteos'],Clases de pilates
+69,169,54,0,2,['Mejorar flexibilidad'],Entrenamiento al aire libre,['Vegano'],HIIT en casa
+82,175,37,0,2,['Mejorar flexibilidad'],Entrenamiento al aire libre,['Vegano'],Natación en piscina cubierta
+67,169,49,1,1,['Reducir estrés'],Entrenamiento de fuerza,['Sin lácteos'],Circuito de resistencia en el gimnasio
+71,191,34,0,1,['Reducir estrés'],Ejercicios cardiovasculares,['Sin frutos secos'],HIIT en casa
+86,154,53,1,3,['Mantener condición física'],Entrenamiento de fuerza,['Sin lácteos'],Circuito de resistencia en el gimnasio
+70,191,65,0,2,['Mejorar flexibilidad'],Entrenamiento al aire libre,['Sin lácteos'],Circuito de resistencia en el gimnasio
+60,189,64,0,1,['Ganar masa muscular'],Ejercicio en el gimnasio,['Sin lactosa'],Caminata al aire libre
+86,199,50,0,2,['Mejorar flexibilidad'],Entrenamiento al aire libre,[],Entrenamiento de pesas en el gimnasio
+52,192,57,1,1,['Ganar masa muscular'],Ejercicios cardiovasculares,['Vegetariano'],Yoga para principiantes
+91,190,63,1,3,['Reducir estrés'],Ejercicio en casa,['Sin gluten'],HIIT en casa
+80,196,23,1,3,['Perder peso'],Ejercicio en casa,['Vegano'],Yoga para principiantes
+91,157,44,1,3,['Aumentar resistencia'],Yoga y meditación,['Sin gluten'],Entrenamiento de pesas en el gimnasio
+73,160,56,0,3,['Ganar masa muscular'],Ejercicios cardiovasculares,['Sin lactosa'],Yoga para principiantes
+67,198,43,0,1,['Aumentar resistencia'],Entrenamiento al aire libre,['Sin frutos secos'],Caminata al aire libre
+88,178,35,0,1,['Reducir estrés'],Ejercicios cardiovasculares,['Sin lácteos'],Circuito de resistencia en el gimnasio
+88,164,33,0,1,['Perder peso'],Ejercicio en el gimnasio,['Vegetariano'],Entrenamiento de pesas en el gimnasio
+96,170,44,0,2,['Reducir estrés'],Entrenamiento al aire libre,['Sin lácteos'],Correr en el parque
+64,178,22,1,1,['Reducir estrés'],Entrenamiento de fuerza,['Sin gluten'],Circuito de resistencia en el gimnasio
+79,161,55,1,3,['Ganar masa muscular'],Ejercicio en el gimnasio,[],Rutina de cardio en casa
+52,174,51,1,2,['Reducir estrés'],Entrenamiento de fuerza,['Vegetariano'],Entrenamiento de pesas en el gimnasio
+61,164,51,0,3,['Aumentar resistencia'],Ejercicio en el gimnasio,['Sin azúcar'],Entrenamiento de pesas en el gimnasio
+88,186,55,0,1,['Aumentar resistencia'],Ejercicio en el gimnasio,['Vegano'],Rutina de cardio en casa
+93,196,34,0,3,['Ganar masa muscular'],Yoga y meditación,['Sin frutos secos'],Caminata al aire libre
+58,193,52,0,2,['Aumentar resistencia'],Yoga y meditación,['Sin lácteos'],Circuito de resistencia en el gimnasio
+89,156,27,0,3,['Reducir estrés'],Ejercicio en casa,['Vegano'],Entrenamiento de pesas en el gimnasio
+66,182,50,1,2,['Perder peso'],Ejercicios cardiovasculares,[],Circuito de resistencia en el gimnasio
+96,183,40,1,2,['Aumentar resistencia'],Entrenamiento de fuerza,['Sin frutos secos'],Clase de spinning
+62,186,56,0,2,['Mantener condición física'],Ejercicio en casa,['Sin gluten'],Clases de pilates
+83,171,47,1,3,['Perder peso'],Entrenamiento de fuerza,['Sin lactosa'],Correr en el parque
+66,184,28,0,3,['Mantener condición física'],Ejercicio en el gimnasio,['Sin azúcar'],Clase de spinning
+60,194,31,1,3,['Perder peso'],Ejercicio en casa,['Sin gluten'],Rutina de cardio en casa
+56,162,34,1,1,['Aumentar resistencia'],Entrenamiento al aire libre,['Vegano'],Yoga para principiantes
+79,171,42,1,2,['Reducir estrés'],Ejercicio en el gimnasio,['Vegetariano'],Correr en el parque
+51,153,24,0,2,['Aumentar resistencia'],Ejercicios cardiovasculares,['Vegetariano'],Caminata al aire libre
+53,181,20,0,3,['Reducir estrés'],Entrenamiento de fuerza,['Sin lácteos'],Yoga para principiantes
+97,181,22,1,3,['Reducir estrés'],Entrenamiento al aire libre,['Sin frutos secos'],Entrenamiento de pesas en el gimnasio
+64,167,60,1,1,['Ganar masa muscular'],Entrenamiento de fuerza,['Vegetariano'],Entrenamiento de pesas en el gimnasio
+97,178,36,0,3,['Ganar masa muscular'],Entrenamiento de fuerza,['Sin lácteos'],Clase de spinning
+76,188,30,0,3,['Reducir estrés'],Yoga y meditación,['Sin lactosa'],Rutina de cardio en casa
+60,175,21,1,3,['Reducir estrés'],Yoga y meditación,['Sin azúcar'],HIIT en casa
+69,191,48,1,1,['Ganar masa muscular'],Ejercicio en casa,['Vegano'],Yoga para principiantes
+75,168,35,0,3,['Ganar masa muscular'],Ejercicio en el gimnasio,['Sin gluten'],Correr en el parque
+77,160,39,1,1,['Perder peso'],Entrenamiento al aire libre,['Sin azúcar'],HIIT en casa
+68,184,27,0,1,['Mejorar flexibilidad'],Ejercicio en el gimnasio,['Sin frutos secos'],Clase de spinning
+53,183,44,0,2,['Mejorar flexibilidad'],Ejercicio en el gimnasio,['Sin azúcar'],Entrenamiento de pesas en el gimnasio
+79,199,65,1,3,['Mejorar flexibilidad'],Ejercicios cardiovasculares,['Vegetariano'],Caminata al aire libre
+55,195,30,1,1,['Mejorar flexibilidad'],Entrenamiento de fuerza,[],Clases de pilates
+75,172,18,0,3,['Reducir estrés'],Yoga y meditación,['Vegano'],Caminata al aire libre
+63,177,38,0,2,['Mejorar flexibilidad'],Ejercicios cardiovasculares,['Vegetariano'],Natación en piscina cubierta
+56,164,64,0,2,['Mejorar flexibilidad'],Entrenamiento de fuerza,[],Clases de pilates
+72,190,20,1,1,['Aumentar resistencia'],Ejercicio en casa,['Vegano'],Correr en el parque
+76,188,51,1,2,['Perder peso'],Ejercicio en casa,['Vegano'],Circuito de resistencia en el gimnasio
+79,166,37,0,3,['Perder peso'],Ejercicio en el gimnasio,['Sin frutos secos'],Natación en piscina cubierta
+79,156,60,0,2,['Reducir estrés'],Ejercicio en casa,['Vegetariano'],HIIT en casa
+61,184,42,1,1,['Mejorar flexibilidad'],Yoga y meditación,['Vegano'],Yoga para principiantes
+92,194,50,0,2,['Reducir estrés'],Entrenamiento de fuerza,['Sin azúcar'],Clases de pilates
+99,170,38,0,2,['Mantener condición física'],Ejercicio en el gimnasio,['Vegetariano'],Rutina de cardio en casa
+62,186,22,1,3,['Mantener condición física'],Yoga y meditación,[],Natación en piscina cubierta
+68,171,59,1,3,['Perder peso'],Entrenamiento al aire libre,['Sin lactosa'],Clase de spinning
+90,183,34,1,1,['Mantener condición física'],Ejercicios cardiovasculares,['Sin lácteos'],Clase de spinning
+54,157,54,1,2,['Ganar masa muscular'],Entrenamiento de fuerza,['Sin lactosa'],Caminata al aire libre
+79,193,25,1,3,['Perder peso'],Entrenamiento de fuerza,['Vegetariano'],HIIT en casa
+64,182,53,0,3,['Ganar masa muscular'],Ejercicios cardiovasculares,['Vegetariano'],Yoga para principiantes
+94,154,51,0,2,['Perder peso'],Ejercicio en el gimnasio,['Sin azúcar'],Clases de pilates
+82,165,49,0,1,['Reducir estrés'],Ejercicios cardiovasculares,['Vegano'],Yoga para principiantes
+66,154,28,1,1,['Ganar masa muscular'],Entrenamiento de fuerza,['Sin azúcar'],Rutina de cardio en casa
+67,196,46,0,3,['Perder peso'],Ejercicio en el gimnasio,['Vegano'],Entrenamiento de pesas en el gimnasio
+86,180,25,1,2,['Mantener condición física'],Ejercicios cardiovasculares,['Sin azúcar'],Natación en piscina cubierta
+76,183,26,1,2,['Perder peso'],Ejercicios cardiovasculares,['Sin lactosa'],Correr en el parque
+79,185,63,1,2,['Perder peso'],Ejercicio en el gimnasio,['Vegetariano'],Entrenamiento de pesas en el gimnasio
+62,154,47,1,3,['Aumentar resistencia'],Entrenamiento al aire libre,['Vegano'],Clase de spinning
+53,172,45,1,2,['Mantener condición física'],Ejercicio en el gimnasio,['Sin azúcar'],Entrenamiento de pesas en el gimnasio
+80,190,22,0,1,['Reducir estrés'],Entrenamiento de fuerza,['Sin frutos secos'],Entrenamiento de pesas en el gimnasio
+64,195,32,0,2,['Reducir estrés'],Ejercicios cardiovasculares,[],Correr en el parque
+55,154,40,1,3,['Mejorar flexibilidad'],Entrenamiento de fuerza,['Vegetariano'],HIIT en casa
+59,179,31,1,2,['Mejorar flexibilidad'],Ejercicio en casa,['Sin azúcar'],Yoga para principiantes
+88,157,56,1,1,['Ganar masa muscular'],Ejercicio en el gimnasio,['Vegano'],Clase de spinning
+81,189,47,1,2,['Mantener condición física'],Ejercicio en el gimnasio,['Sin azúcar'],Entrenamiento de pesas en el gimnasio
+76,169,30,1,2,['Reducir estrés'],Ejercicios cardiovasculares,[],Rutina de cardio en casa
+69,163,48,1,2,['Mantener condición física'],Entrenamiento al aire libre,['Sin gluten'],Circuito de resistencia en el gimnasio
+91,168,55,1,2,['Mantener condición física'],Ejercicio en casa,['Sin lactosa'],Clases de pilates
+51,172,34,1,1,['Perder peso'],Entrenamiento de fuerza,['Sin gluten'],Clases de pilates
+97,175,27,1,2,['Ganar masa muscular'],Ejercicio en el gimnasio,['Sin lactosa'],Circuito de resistencia en el gimnasio
+98,161,31,0,1,['Reducir estrés'],Ejercicio en el gimnasio,['Sin frutos secos'],Clases de pilates
+63,158,27,0,3,['Ganar masa muscular'],Ejercicio en casa,['Sin lactosa'],Correr en el parque
+85,189,64,1,3,['Perder peso'],Yoga y meditación,[],Rutina de cardio en casa
+63,189,48,0,3,['Ganar masa muscular'],Ejercicios cardiovasculares,['Vegano'],Circuito de resistencia en el gimnasio
+94,185,19,0,1,['Mantener condición física'],Yoga y meditación,['Sin lácteos'],Natación en piscina cubierta
+84,191,63,0,3,['Mejorar flexibilidad'],Entrenamiento de fuerza,['Sin frutos secos'],Clases de pilates
+99,185,49,1,1,['Mantener condición física'],Entrenamiento de fuerza,['Vegetariano'],Correr en el parque
+71,162,34,1,1,['Ganar masa muscular'],Ejercicio en el gimnasio,['Sin lactosa'],Circuito de resistencia en el gimnasio
+60,199,49,1,1,['Ganar masa muscular'],Yoga y meditación,['Sin lactosa'],Caminata al aire libre
+84,183,32,0,2,['Aumentar resistencia'],Entrenamiento al aire libre,['Sin lácteos'],Entrenamiento de pesas en el gimnasio
+59,197,20,0,2,['Ganar masa muscular'],Yoga y meditación,['Sin frutos secos'],Caminata al aire libre
+70,199,62,0,3,['Reducir estrés'],Ejercicio en casa,['Sin lactosa'],Clase de spinning
+54,167,55,0,3,['Perder peso'],Ejercicio en el gimnasio,['Sin frutos secos'],Rutina de cardio en casa
+52,172,52,0,2,['Aumentar resistencia'],Entrenamiento de fuerza,['Sin frutos secos'],Yoga para principiantes
+52,181,30,0,2,['Reducir estrés'],Ejercicio en el gimnasio,['Sin frutos secos'],Clases de pilates
+53,165,31,1,2,['Reducir estrés'],Ejercicio en el gimnasio,['Sin gluten'],Rutina de cardio en casa
+58,175,19,0,1,['Reducir estrés'],Entrenamiento de fuerza,['Vegetariano'],Clase de spinning
+70,188,22,1,3,['Reducir estrés'],Yoga y meditación,['Vegano'],Clase de spinning

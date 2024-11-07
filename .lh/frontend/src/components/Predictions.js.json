@@ -1,0 +1,26 @@
+{
+    "sourceFile": "frontend/src/components/Predictions.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1730947221856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1730947699251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,16 @@\n+// frontend/src/components/Predictions.js\r\n+import React from 'react';\r\n+\r\n+const Predictions = ({ predictions }) => {\r\n+    return (\r\n+        <div>\r\n+            <h2>Predicciones de tu Progreso</h2>\r\n+            <p>Peso Futuro: {predictions.peso_futuro.toFixed(2)} kg</p>\r\n+            <p>Rendimiento Futuro: {predictions.rendimiento_futuro.toFixed(2)}</p>\r\n+            <p>Meta Nutricional Futura: {predictions.meta_nutricional_futura.toFixed(2)}</p>\r\n+            {/* Puedes agregar gráficos o visualizaciones adicionales aquí */}\r\n+        </div>\r\n+    );\r\n+};\r\n+\r\n+export default Predictions;\r\n"
+                },
+                {
+                    "date": 1730947840539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,25 +8,10 @@\n             <p>Peso Futuro: {predictions.peso_futuro.toFixed(2)} kg</p>\r\n             <p>Rendimiento Futuro: {predictions.rendimiento_futuro.toFixed(2)}</p>\r\n             <p>Meta Nutricional Futura: {predictions.meta_nutricional_futura.toFixed(2)}</p>\r\n             {/* Puedes agregar gráficos o visualizaciones adicionales aquí */}\r\n+                    \r\n         </div>\r\n     );\r\n };\r\n \r\n export default Predictions;\r\n-// frontend/src/components/Predictions.js\r\n-import React from 'react';\r\n-\r\n-const Predictions = ({ predictions }) => {\r\n-    return (\r\n-        <div>\r\n-            <h2>Predicciones de tu Progreso</h2>\r\n-            <p>Peso Futuro: {predictions.peso_futuro.toFixed(2)} kg</p>\r\n-            <p>Rendimiento Futuro: {predictions.rendimiento_futuro.toFixed(2)}</p>\r\n-            <p>Meta Nutricional Futura: {predictions.meta_nutricional_futura.toFixed(2)}</p>\r\n-            {/* Aquí puedes añadir gráficos o visualizaciones adicionales */}\r\n-        </div>\r\n-    );\r\n-};\r\n-\r\n-export default Predictions;\r\n"
+                }
+            ],
+            "date": 1730947221856,
+            "name": "Commit-0",
+            "content": "// frontend/src/components/Predictions.js\r\nimport React from 'react';\r\n\r\nconst Predictions = ({ predictions }) => {\r\n    return (\r\n        <div>\r\n            <h2>Predicciones de tu Progreso</h2>\r\n            <p>Peso Futuro: {predictions.peso_futuro.toFixed(2)} kg</p>\r\n            <p>Rendimiento Futuro: {predictions.rendimiento_futuro.toFixed(2)}</p>\r\n            <p>Meta Nutricional Futura: {predictions.meta_nutricional_futura.toFixed(2)}</p>\r\n            {/* Aquí puedes añadir gráficos o visualizaciones adicionales */}\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default Predictions;\r\n"
+        }
+    ]
+}

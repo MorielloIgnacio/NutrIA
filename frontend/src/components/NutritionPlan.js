@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const NutritionPlan = ({ plan, onStartFirstDay, onDeletePlan }) => {
-    if (!plan || !plan.nutrition_plan) {
+const NutritionPlan = ({ plan, onStartDay, onDeletePlan, completedDays = [] }) => {
+    // currentDay representa el día actual en el plan, pero vamos a permitir que avances día a día sin restricciones de fecha.
+    const currentDayInPlan = completedDays.length + 1;
+
+    if (!plan || !plan.dias) {
         return (
             <div className="p-8 max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold mb-4">No se ha encontrado un plan nutricional válido.</h1>
+                <h1 className="text-3xl font-bold mb-4">No se ha encontrado un plan válido.</h1>
                 <button
                     onClick={onDeletePlan}
                     className="px-6 py-3 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600"
@@ -15,65 +18,45 @@ const NutritionPlan = ({ plan, onStartFirstDay, onDeletePlan }) => {
         );
     }
 
-    const { calories = 0, carbs = 0, protein = 0, fats = 0 } = plan.nutrition_plan;
+    const canStartDay = (day) => {
+        // Permitir iniciar solo si el día anterior está completo o si es el primer día
+        const previousDayComplete = day === 1 || completedDays.includes(day - 1);
+        // Permitir iniciar el día actual sin depender de la fecha
+        const dayAvailable = day <= currentDayInPlan;
+        return previousDayComplete && dayAvailable;
+    };
 
     return (
         <div className="p-8 max-w-4xl mx-auto">
-            <h1 className="text-3xl font-bold mb-4">Tu Plan</h1>
-            <p className="text-gray-600 mb-8">
-                Basado en tu evaluación, hemos creado un plan personalizado para ayudarte a alcanzar tus objetivos.
-            </p>
+            <h1 className="text-2xl font-semibold mb-6">Plan de 30 Días</h1>
 
-            {/* Sección de Nutrición */}
-            <div className="mb-8">
-                <h2 className="text-xl font-semibold mb-2">Nutrición</h2>
-                <p>{calories.toFixed(0)} calorías por día</p>
-                <p>
-                    {Math.round((carbs / (carbs + protein + fats)) * 100)}% carbohidratos,{' '}
-                    {Math.round((protein / (carbs + protein + fats)) * 100)}% proteínas,{' '}
-                    {Math.round((fats / (carbs + protein + fats)) * 100)}% grasas
-                </p>
-            </div>
-
-            {/* Sección de Plan de Comidas */}
-            <div className="mb-8">
-                <h2 className="text-xl font-semibold mb-2">Plan de Comidas</h2>
-                <div className="flex gap-3 flex-wrap">
-                    {['Desayuno', 'Merienda de la mañana', 'Almuerzo', 'Merienda de la tarde', 'Cena'].map((meal) => (
-                        <button
-                            key={meal}
-                            className="px-4 py-2 bg-gray-200 rounded-full text-gray-800 font-medium"
-                        >
-                            {meal}
-                        </button>
-                    ))}
+            {/* Semanas */}
+            {Array.from({ length: 4 }, (_, semana) => (
+                <div key={semana} className="mb-6">
+                    <h2 className="text-lg font-bold mb-4">Semana {semana + 1}</h2>
+                    <div className="grid grid-cols-1 gap-3">
+                        {plan.dias.slice(semana * 7, (semana + 1) * 7).map((dia) => (
+                            <button
+                                key={dia.dia}
+                                onClick={() => canStartDay(dia.dia) && onStartDay(dia.dia)}
+                                className={`flex justify-between items-center px-4 py-3 rounded-lg font-semibold transition-colors ${
+                                    completedDays.includes(dia.dia) ? 'bg-green-300 text-white' :
+                                    canStartDay(dia.dia) ? 'bg-yellow-400 text-white' :
+                                    'bg-gray-200 text-gray-600 cursor-not-allowed'
+                                } hover:bg-yellow-300`}
+                            >
+                                <span>{dia.dia} °Día</span>
+                                <span className={`text-sm font-medium ${completedDays.includes(dia.dia) ? 'bg-green-700' : 'bg-gray-400'} px-3 py-1 rounded-full`}>
+                                    {completedDays.includes(dia.dia) ? 'Completado' : '0%'}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
-            </div>
+            ))}
 
-            {/* Sección de Entrenamientos */}
-            <div className="mb-8">
-                <h2 className="text-xl font-semibold mb-2">Entrenamientos</h2>
-                <p>4 entrenamientos por semana</p>
-                <div className="flex gap-3 flex-wrap">
-                    {['Fuerza', 'Cardio', 'Movilidad', 'Recuperación'].map((workout) => (
-                        <button
-                            key={workout}
-                            className="px-4 py-2 bg-gray-200 rounded-full text-gray-800 font-medium"
-                        >
-                            {workout}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Botones para Iniciar Plan y Eliminar Plan */}
-            <div className="mt-8 flex gap-4">
-                <button
-                    onClick={onStartFirstDay}
-                    className="px-6 py-3 bg-yellow-500 text-white rounded-lg font-bold hover:bg-yellow-600"
-                >
-                    Iniciar Día 1
-                </button>
+            {/* Botón para eliminar plan */}
+            <div className="mt-8 flex justify-center">
                 <button
                     onClick={onDeletePlan}
                     className="px-6 py-3 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600"

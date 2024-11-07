@@ -1,0 +1,18 @@
+{
+    "sourceFile": "backend/lstm_model.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1730762307527,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1730762307527,
+            "name": "Commit-0",
+            "content": "import tensorflow as tf\r\nfrom tensorflow.keras.models import Sequential\r\nfrom tensorflow.keras.layers import LSTM, Dense, Dropout\r\n\r\ndef crear_modelo_lstm(time_steps, n_features):\r\n    model = Sequential([\r\n        LSTM(64, return_sequences=True, input_shape=(time_steps, n_features)),\r\n        Dropout(0.3),\r\n        LSTM(32, return_sequences=False),\r\n        Dropout(0.3),\r\n        Dense(3)  # Tres neuronas de salida para los tres objetivos\r\n    ])\r\n    model.compile(optimizer='adam', loss='mse')\r\n    return model\r\n\r\nif __name__ == \"__main__\":\r\n    time_steps = 7\r\n    n_features = 8  # Supón que tenemos 8 características en la entrada\r\n\r\n    modelo = crear_modelo_lstm(time_steps, n_features)\r\n    modelo.summary()\r\n"
+        }
+    ]
+}

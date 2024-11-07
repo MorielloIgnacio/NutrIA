@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ({ onLogout }) => {
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f4] px-10 py-3">
       <div className="flex items-center gap-4 text-[#111418]">
@@ -19,29 +19,17 @@ const Navbar = () => {
       <div className="flex flex-1 justify-end gap-8">
         <div className="flex items-center gap-9">
           <a className="text-[#111418] text-sm font-medium leading-normal" href="/">Inicio</a>
-          <a className="text-[#111418] text-sm font-medium leading-normal" href="#">Planes de Alimentación</a>
-          <a className="text-[#111418] text-sm font-medium leading-normal" href="#">Mis Dietas</a>
-          <a className="text-[#111418] text-sm font-medium leading-normal" href="#">Mis Entrenamientos</a>
         </div>
-        <div className="flex gap-2">
-          <button className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#f0f2f4] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
-            </svg>
-          </button>
-          <button className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#f0f2f4] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-              <path d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"></path>
-            </svg>
-          </button>
-        </div>
-        <div
-          className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-          style={{
-            backgroundImage:
-              '',
+        <button
+          onClick={() => {
+            localStorage.removeItem('token'); // Eliminar el token de localStorage
+            onLogout(); // Llamar a la función de cierre de sesión en App.js
+            window.location.reload(); // Recargar la página para ir al login
           }}
-        ></div>
+          className="px-4 py-2 bg-red-500 text-white rounded-lg font-bold hover:bg-red-600"
+        >
+          Cerrar sesión
+        </button>
       </div>
     </header>
   );

@@ -1,0 +1,201 @@
+weight,height,age,gender,activity_level,goals,dietary_preferences,dietary_restrictions,recommended_recipe
+71,153,24,1,2,['Mantener peso'],Baja en grasas,['Sin azúcar'],Ensalada de lentejas y vegetales
+59,169,21,0,3,['Perder peso'],Baja en grasas,['Sin azúcar'],Tortilla de claras y espinacas
+54,194,55,0,3,['Mejorar digestión'],Baja en azúcares,['Sin lactosa'],Sopa de calabaza y zanahoria
+96,195,55,1,2,['Reducir grasa'],Alta en proteínas,[],Sopa de verduras
+73,193,45,1,3,['Perder peso'],Equilibrada,['Sin azúcar'],Pechuga a la plancha con brócoli
+50,197,22,1,3,['Mantener peso'],Equilibrada,['Sin azúcar'],Yogur con frutos rojos y chía
+68,197,33,1,2,['Perder peso'],Baja en carbohidratos,['Sin lactosa'],Pasta integral con vegetales
+87,182,54,0,3,['Mejorar digestión'],Baja en carbohidratos,['Vegano'],Ensalada de lentejas y vegetales
+78,187,30,0,2,['Perder peso'],Baja en azúcares,['Sin azúcar'],Yogur con frutos rojos y chía
+50,175,62,0,1,['Mantener peso'],Alta en fibra,['Sin lactosa'],Pechuga a la plancha con brócoli
+100,191,24,1,3,['Perder peso'],Baja en azúcares,[],Sopa de verduras
+55,160,61,0,3,['Reducir grasa'],Alta en proteínas,['Vegetariano'],Tortilla de claras y espinacas
+81,151,65,1,3,['Mantener peso'],Equilibrada,[],Batido de proteínas y avena
+66,155,50,1,2,['Ganar masa muscular'],Baja en carbohidratos,[],Ensalada de pollo y quinoa
+52,161,41,0,2,['Mejorar digestión'],Alta en proteínas,['Sin azúcar'],Ensalada de pollo y quinoa
+92,191,43,1,1,['Mantener peso'],Baja en carbohidratos,['Sin lactosa'],Smoothie de frutas y espinacas
+85,168,27,1,2,['Ganar masa muscular'],Alta en proteínas,['Sin lácteos'],Ensalada de pollo y quinoa
+67,186,46,1,1,['Perder peso'],Equilibrada,[],Sopa de calabaza y zanahoria
+99,160,61,1,3,['Ganar masa muscular'],Baja en carbohidratos,[],Sopa de verduras
+54,169,65,0,1,['Mejorar digestión'],Alta en proteínas,['Vegetariano'],Tortilla de claras y espinacas
+70,164,42,0,3,['Reducir grasa'],Baja en grasas,[],Yogur con frutos rojos y chía
+59,155,42,0,2,['Mejorar digestión'],Equilibrada,['Sin lácteos'],Smoothie de frutas y espinacas
+90,177,53,0,1,['Mejorar digestión'],Alta en fibra,['Vegano'],Ensalada de lentejas y vegetales
+87,198,43,1,3,['Mantener peso'],Baja en carbohidratos,['Vegano'],Smoothie de frutas y espinacas
+93,156,29,0,3,['Mantener peso'],Equilibrada,['Sin frutos secos'],Tostadas con aguacate y huevos
+65,190,60,0,3,['Perder peso'],Baja en carbohidratos,['Sin gluten'],Smoothie de frutas y espinacas
+78,199,44,1,1,['Mejorar digestión'],Alta en fibra,['Sin gluten'],Pasta integral con vegetales
+57,160,55,0,2,['Reducir grasa'],Baja en carbohidratos,['Sin gluten'],Yogur con frutos rojos y chía
+58,150,24,1,3,['Mejorar digestión'],Baja en azúcares,['Sin gluten'],Ensalada de lentejas y vegetales
+60,183,27,0,1,['Perder peso'],Equilibrada,['Vegetariano'],Sopa de calabaza y zanahoria
+62,160,23,0,2,['Aumentar energía'],Baja en carbohidratos,['Sin gluten'],Sopa de verduras
+53,192,51,0,3,['Perder peso'],Baja en azúcares,['Sin frutos secos'],Tortilla de claras y espinacas
+57,165,18,1,2,['Aumentar energía'],Baja en azúcares,['Sin frutos secos'],Ensalada de lentejas y vegetales
+79,173,31,1,1,['Mantener peso'],Baja en azúcares,[],Sopa de verduras
+50,182,50,0,2,['Mejorar digestión'],Alta en proteínas,['Sin lactosa'],Yogur con frutos rojos y chía
+58,175,57,0,1,['Aumentar energía'],Baja en azúcares,[],Batido de proteínas y avena
+65,157,35,1,3,['Mejorar digestión'],Alta en fibra,['Vegano'],Tostadas con aguacate y huevos
+93,183,27,1,1,['Perder peso'],Alta en fibra,['Sin frutos secos'],Smoothie de frutas y espinacas
+82,195,64,0,1,['Ganar masa muscular'],Baja en grasas,['Sin lactosa'],Tortilla de claras y espinacas
+81,162,29,0,2,['Perder peso'],Baja en azúcares,['Sin lácteos'],Batido de proteínas y avena
+50,151,53,0,3,['Mejorar digestión'],Alta en fibra,['Sin azúcar'],Pasta integral con vegetales
+93,187,58,0,1,['Aumentar energía'],Alta en proteínas,['Sin lácteos'],Sopa de verduras
+73,183,20,0,2,['Aumentar energía'],Baja en grasas,['Vegetariano'],Smoothie de frutas y espinacas
+67,193,32,0,1,['Ganar masa muscular'],Alta en proteínas,['Vegano'],Sopa de calabaza y zanahoria
+58,178,20,1,3,['Mantener peso'],Alta en fibra,['Vegano'],Arroz integral con pollo
+93,169,40,1,2,['Ganar masa muscular'],Baja en carbohidratos,[],Pechuga a la plancha con brócoli
+91,198,26,1,2,['Mantener peso'],Baja en carbohidratos,['Sin azúcar'],Batido de proteínas y avena
+86,188,26,0,2,['Aumentar energía'],Alta en fibra,['Sin frutos secos'],Yogur con frutos rojos y chía
+85,165,65,0,2,['Ganar masa muscular'],Baja en azúcares,['Sin azúcar'],Sopa de calabaza y zanahoria
+87,174,50,1,3,['Perder peso'],Baja en grasas,['Vegano'],Sopa de calabaza y zanahoria
+98,168,25,1,3,['Reducir grasa'],Alta en fibra,['Sin lactosa'],Sopa de verduras
+69,156,39,0,1,['Reducir grasa'],Baja en grasas,['Sin gluten'],Tostadas con aguacate y huevos
+99,154,56,1,3,['Aumentar energía'],Equilibrada,['Vegetariano'],Batido de proteínas y avena
+69,195,50,1,1,['Aumentar energía'],Equilibrada,[],Batido de proteínas y avena
+93,163,64,0,2,['Perder peso'],Baja en grasas,['Sin gluten'],Smoothie de frutas y espinacas
+70,173,44,0,1,['Perder peso'],Alta en fibra,['Sin gluten'],Sopa de verduras
+84,172,64,1,1,['Perder peso'],Baja en grasas,['Sin azúcar'],Batido de proteínas y avena
+65,154,33,1,2,['Reducir grasa'],Alta en proteínas,['Sin azúcar'],Ensalada de lentejas y vegetales
+58,156,63,0,2,['Mejorar digestión'],Baja en carbohidratos,['Sin lácteos'],Batido de proteínas y avena
+73,160,25,0,1,['Mejorar digestión'],Baja en carbohidratos,[],Pasta integral con vegetales
+99,186,54,1,2,['Aumentar energía'],Alta en proteínas,['Sin gluten'],Ensalada de pollo y quinoa
+69,183,53,1,2,['Perder peso'],Baja en carbohidratos,['Sin gluten'],Yogur con frutos rojos y chía
+78,183,54,1,2,['Ganar masa muscular'],Alta en fibra,['Vegano'],Sopa de calabaza y zanahoria
+94,196,20,1,1,['Perder peso'],Alta en fibra,['Sin azúcar'],Ensalada de pollo y quinoa
+97,150,26,1,1,['Mantener peso'],Equilibrada,['Sin azúcar'],Batido de proteínas y avena
+71,158,32,1,3,['Perder peso'],Alta en proteínas,['Vegetariano'],Tostadas con aguacate y huevos
+96,184,38,0,1,['Mejorar digestión'],Baja en grasas,['Vegano'],Ensalada de lentejas y vegetales
+94,199,63,0,2,['Ganar masa muscular'],Equilibrada,['Vegetariano'],Pechuga a la plancha con brócoli
+67,150,35,1,1,['Aumentar energía'],Alta en fibra,['Sin lactosa'],Arroz integral con pollo
+79,199,39,1,2,['Reducir grasa'],Alta en fibra,['Sin gluten'],Ensalada de lentejas y vegetales
+83,178,21,0,2,['Perder peso'],Alta en fibra,['Sin lactosa'],Yogur con frutos rojos y chía
+85,161,41,1,3,['Ganar masa muscular'],Equilibrada,['Sin lactosa'],Arroz integral con pollo
+83,159,47,0,3,['Ganar masa muscular'],Equilibrada,['Sin gluten'],Batido de proteínas y avena
+78,152,35,0,1,['Aumentar energía'],Alta en fibra,['Vegetariano'],Sopa de verduras
+67,190,48,0,2,['Mejorar digestión'],Baja en grasas,['Sin lactosa'],Sopa de calabaza y zanahoria
+68,151,50,0,3,['Ganar masa muscular'],Baja en azúcares,['Sin lácteos'],Pechuga a la plancha con brócoli
+70,195,45,0,3,['Aumentar energía'],Alta en proteínas,['Vegetariano'],Pasta integral con vegetales
+75,187,51,0,1,['Reducir grasa'],Baja en azúcares,['Sin gluten'],Pechuga a la plancha con brócoli
+86,177,41,0,3,['Aumentar energía'],Baja en azúcares,['Sin lácteos'],Ensalada de pollo y quinoa
+88,175,38,1,2,['Perder peso'],Equilibrada,['Sin lácteos'],Smoothie de frutas y espinacas
+64,181,25,1,1,['Aumentar energía'],Equilibrada,[],Pasta integral con vegetales
+57,169,21,0,3,['Reducir grasa'],Equilibrada,['Sin azúcar'],Ensalada de pollo y quinoa
+87,193,35,1,2,['Ganar masa muscular'],Equilibrada,[],Yogur con frutos rojos y chía
+74,171,53,1,3,['Reducir grasa'],Equilibrada,[],Tortilla de claras y espinacas
+98,183,31,0,2,['Mejorar digestión'],Alta en fibra,['Sin frutos secos'],Ensalada de lentejas y vegetales
+93,160,58,1,1,['Perder peso'],Alta en proteínas,['Sin gluten'],Batido de proteínas y avena
+95,187,29,1,3,['Perder peso'],Alta en fibra,['Sin lactosa'],Sopa de verduras
+51,182,29,0,3,['Ganar masa muscular'],Alta en proteínas,['Sin lactosa'],Ensalada de lentejas y vegetales
+86,175,57,1,3,['Perder peso'],Alta en proteínas,['Sin lactosa'],Tostadas con aguacate y huevos
+55,184,35,0,2,['Mantener peso'],Baja en grasas,[],Sopa de verduras
+61,190,32,1,1,['Perder peso'],Alta en proteínas,[],Pechuga a la plancha con brócoli
+80,199,20,1,3,['Perder peso'],Equilibrada,['Sin azúcar'],Ensalada de lentejas y vegetales
+64,154,45,1,1,['Perder peso'],Baja en carbohidratos,[],Sopa de calabaza y zanahoria
+90,180,34,1,1,['Reducir grasa'],Equilibrada,['Sin azúcar'],Batido de proteínas y avena
+66,150,29,0,1,['Perder peso'],Alta en proteínas,['Vegano'],Ensalada de lentejas y vegetales
+61,150,38,1,1,['Mejorar digestión'],Alta en proteínas,['Sin gluten'],Tostadas con aguacate y huevos
+89,195,42,0,3,['Perder peso'],Baja en grasas,[],Sopa de verduras
+86,156,23,0,3,['Mantener peso'],Baja en azúcares,['Vegano'],Tostadas con aguacate y huevos
+88,188,64,0,2,['Aumentar energía'],Baja en grasas,['Vegano'],Ensalada de pollo y quinoa
+58,180,64,0,1,['Mejorar digestión'],Baja en grasas,[],Tostadas con aguacate y huevos
+69,156,46,0,2,['Perder peso'],Baja en grasas,['Vegano'],Arroz integral con pollo
+99,200,20,1,3,['Mantener peso'],Equilibrada,['Sin frutos secos'],Arroz integral con pollo
+86,189,60,0,2,['Reducir grasa'],Alta en fibra,['Sin frutos secos'],Pasta integral con vegetales
+93,175,34,1,3,['Mejorar digestión'],Alta en proteínas,['Vegano'],Sopa de verduras
+86,179,26,1,3,['Mantener peso'],Baja en carbohidratos,['Sin lactosa'],Ensalada de pollo y quinoa
+76,164,28,0,2,['Reducir grasa'],Baja en carbohidratos,['Vegano'],Arroz integral con pollo
+100,165,43,1,2,['Aumentar energía'],Equilibrada,['Vegetariano'],Sopa de verduras
+95,194,65,1,2,['Perder peso'],Baja en azúcares,['Vegano'],Arroz integral con pollo
+75,177,41,0,1,['Perder peso'],Equilibrada,[],Pechuga a la plancha con brócoli
+97,159,62,0,2,['Mantener peso'],Alta en fibra,['Sin gluten'],Ensalada de pollo y quinoa
+84,158,32,0,2,['Perder peso'],Baja en grasas,['Vegano'],Tostadas con aguacate y huevos
+84,152,44,0,3,['Mejorar digestión'],Equilibrada,['Vegetariano'],Ensalada de lentejas y vegetales
+95,192,21,1,3,['Perder peso'],Equilibrada,['Sin azúcar'],Ensalada de lentejas y vegetales
+90,157,18,1,1,['Mantener peso'],Alta en proteínas,['Vegano'],Sopa de calabaza y zanahoria
+61,166,30,1,1,['Ganar masa muscular'],Equilibrada,['Sin azúcar'],Tortilla de claras y espinacas
+54,180,39,0,3,['Reducir grasa'],Equilibrada,['Sin lácteos'],Arroz integral con pollo
+72,176,29,1,2,['Mejorar digestión'],Baja en carbohidratos,['Vegano'],Tortilla de claras y espinacas
+60,175,47,1,2,['Perder peso'],Alta en proteínas,['Sin lactosa'],Ensalada de pollo y quinoa
+91,151,37,1,3,['Perder peso'],Baja en carbohidratos,['Sin gluten'],Yogur con frutos rojos y chía
+51,192,32,0,1,['Perder peso'],Equilibrada,['Sin lactosa'],Tortilla de claras y espinacas
+64,162,25,1,2,['Ganar masa muscular'],Alta en fibra,[],Ensalada de pollo y quinoa
+66,167,29,1,2,['Perder peso'],Baja en carbohidratos,['Sin azúcar'],Ensalada de pollo y quinoa
+57,164,56,0,1,['Reducir grasa'],Alta en fibra,['Sin azúcar'],Tostadas con aguacate y huevos
+86,156,55,0,1,['Ganar masa muscular'],Baja en grasas,['Sin gluten'],Sopa de verduras
+73,153,38,0,1,['Mejorar digestión'],Baja en grasas,['Sin frutos secos'],Pasta integral con vegetales
+100,155,55,0,1,['Ganar masa muscular'],Alta en fibra,['Sin lácteos'],Pasta integral con vegetales
+67,151,27,1,3,['Ganar masa muscular'],Equilibrada,['Vegano'],Ensalada de lentejas y vegetales
+61,154,22,1,3,['Ganar masa muscular'],Baja en carbohidratos,['Sin gluten'],Pechuga a la plancha con brócoli
+72,187,56,0,1,['Ganar masa muscular'],Baja en azúcares,['Vegano'],Pasta integral con vegetales
+91,163,32,1,3,['Mantener peso'],Baja en azúcares,[],Smoothie de frutas y espinacas
+71,159,51,1,2,['Mejorar digestión'],Alta en proteínas,['Sin lactosa'],Ensalada de lentejas y vegetales
+52,197,62,1,1,['Perder peso'],Baja en azúcares,['Sin azúcar'],Pechuga a la plancha con brócoli
+51,177,45,0,1,['Aumentar energía'],Baja en carbohidratos,[],Sopa de verduras
+52,152,62,0,2,['Mantener peso'],Alta en fibra,['Vegetariano'],Smoothie de frutas y espinacas
+51,194,30,0,1,['Ganar masa muscular'],Baja en azúcares,['Vegetariano'],Pasta integral con vegetales
+88,198,58,0,1,['Aumentar energía'],Baja en carbohidratos,['Sin lácteos'],Ensalada de lentejas y vegetales
+56,193,55,0,1,['Reducir grasa'],Equilibrada,['Sin lácteos'],Tortilla de claras y espinacas
+63,196,37,1,1,['Mejorar digestión'],Baja en grasas,['Sin gluten'],Ensalada de lentejas y vegetales
+74,166,53,1,3,['Mejorar digestión'],Alta en fibra,['Sin frutos secos'],Tostadas con aguacate y huevos
+57,151,33,1,1,['Mantener peso'],Alta en fibra,[],Batido de proteínas y avena
+93,165,24,0,3,['Reducir grasa'],Alta en fibra,['Sin frutos secos'],Pechuga a la plancha con brócoli
+91,161,28,1,3,['Ganar masa muscular'],Alta en proteínas,[],Ensalada de lentejas y vegetales
+76,168,35,0,3,['Aumentar energía'],Baja en azúcares,['Sin lactosa'],Ensalada de lentejas y vegetales
+72,161,30,0,2,['Aumentar energía'],Baja en carbohidratos,['Sin gluten'],Ensalada de lentejas y vegetales
+53,172,60,0,3,['Mejorar digestión'],Baja en carbohidratos,['Sin frutos secos'],Sopa de verduras
+63,195,25,1,2,['Perder peso'],Alta en fibra,['Vegetariano'],Pasta integral con vegetales
+71,190,30,0,2,['Reducir grasa'],Alta en proteínas,['Sin lácteos'],Smoothie de frutas y espinacas
+83,178,22,0,1,['Mantener peso'],Alta en fibra,['Sin frutos secos'],Ensalada de lentejas y vegetales
+77,183,63,0,1,['Reducir grasa'],Alta en proteínas,['Sin gluten'],Smoothie de frutas y espinacas
+91,190,37,0,3,['Perder peso'],Baja en azúcares,['Sin azúcar'],Batido de proteínas y avena
+99,178,32,0,3,['Reducir grasa'],Equilibrada,['Vegetariano'],Tortilla de claras y espinacas
+58,200,47,1,1,['Perder peso'],Alta en proteínas,[],Pechuga a la plancha con brócoli
+83,175,21,0,3,['Aumentar energía'],Baja en carbohidratos,['Sin frutos secos'],Batido de proteínas y avena
+68,152,42,0,1,['Ganar masa muscular'],Baja en carbohidratos,['Sin frutos secos'],Tortilla de claras y espinacas
+56,191,32,1,3,['Aumentar energía'],Equilibrada,['Sin lactosa'],Smoothie de frutas y espinacas
+83,173,39,1,2,['Reducir grasa'],Baja en carbohidratos,['Sin azúcar'],Batido de proteínas y avena
+52,179,65,1,3,['Mejorar digestión'],Alta en proteínas,['Sin frutos secos'],Tostadas con aguacate y huevos
+77,173,63,0,2,['Mantener peso'],Alta en proteínas,['Sin lactosa'],Tortilla de claras y espinacas
+98,155,48,0,1,['Aumentar energía'],Baja en azúcares,['Vegano'],Pechuga a la plancha con brócoli
+50,197,44,0,2,['Aumentar energía'],Equilibrada,['Sin frutos secos'],Yogur con frutos rojos y chía
+92,193,46,1,1,['Mantener peso'],Alta en proteínas,['Sin azúcar'],Sopa de calabaza y zanahoria
+77,159,32,0,2,['Aumentar energía'],Alta en fibra,[],Yogur con frutos rojos y chía
+59,154,48,0,3,['Perder peso'],Alta en fibra,['Sin azúcar'],Ensalada de lentejas y vegetales
+73,196,60,1,3,['Aumentar energía'],Alta en proteínas,['Sin lactosa'],Pechuga a la plancha con brócoli
+83,166,20,0,2,['Reducir grasa'],Baja en carbohidratos,['Vegano'],Tortilla de claras y espinacas
+91,186,61,0,2,['Perder peso'],Baja en grasas,['Sin frutos secos'],Tortilla de claras y espinacas
+73,194,34,1,1,['Aumentar energía'],Baja en azúcares,['Sin lactosa'],Batido de proteínas y avena
+51,192,58,0,1,['Aumentar energía'],Baja en carbohidratos,['Sin azúcar'],Arroz integral con pollo
+75,191,37,1,2,['Ganar masa muscular'],Baja en azúcares,['Vegetariano'],Pechuga a la plancha con brócoli
+92,168,47,0,1,['Aumentar energía'],Baja en azúcares,['Sin frutos secos'],Sopa de verduras
+68,187,31,1,3,['Aumentar energía'],Alta en fibra,['Sin lactosa'],Sopa de calabaza y zanahoria
+71,157,64,1,1,['Ganar masa muscular'],Alta en proteínas,['Vegano'],Pasta integral con vegetales
+61,157,63,1,1,['Aumentar energía'],Equilibrada,[],Sopa de verduras
+90,154,59,1,2,['Mantener peso'],Baja en grasas,['Sin lácteos'],Tortilla de claras y espinacas
+98,187,41,1,2,['Mantener peso'],Alta en fibra,['Sin azúcar'],Sopa de calabaza y zanahoria
+79,168,63,1,3,['Aumentar energía'],Baja en azúcares,['Sin gluten'],Smoothie de frutas y espinacas
+77,185,18,1,1,['Mejorar digestión'],Baja en azúcares,['Sin lácteos'],Ensalada de lentejas y vegetales
+52,186,47,0,3,['Mantener peso'],Baja en grasas,['Sin azúcar'],Tostadas con aguacate y huevos
+95,197,24,1,2,['Aumentar energía'],Baja en azúcares,['Sin lactosa'],Batido de proteínas y avena
+59,179,64,0,1,['Mantener peso'],Alta en proteínas,['Vegetariano'],Tostadas con aguacate y huevos
+62,178,29,0,2,['Aumentar energía'],Baja en carbohidratos,['Sin gluten'],Pechuga a la plancha con brócoli
+71,152,53,1,3,['Ganar masa muscular'],Baja en azúcares,['Vegetariano'],Arroz integral con pollo
+84,181,21,0,3,['Reducir grasa'],Baja en carbohidratos,['Vegetariano'],Pasta integral con vegetales
+78,164,47,0,2,['Reducir grasa'],Alta en proteínas,['Sin lácteos'],Tostadas con aguacate y huevos
+52,153,21,0,2,['Perder peso'],Equilibrada,[],Pasta integral con vegetales
+87,200,63,1,3,['Aumentar energía'],Alta en fibra,['Vegano'],Pechuga a la plancha con brócoli
+66,196,28,0,1,['Reducir grasa'],Baja en grasas,['Sin lácteos'],Pasta integral con vegetales
+59,176,60,0,2,['Reducir grasa'],Baja en grasas,['Sin gluten'],Yogur con frutos rojos y chía
+87,152,47,0,2,['Reducir grasa'],Alta en proteínas,['Vegano'],Pechuga a la plancha con brócoli
+59,175,61,1,1,['Reducir grasa'],Equilibrada,[],Ensalada de lentejas y vegetales
+97,191,61,1,3,['Perder peso'],Baja en grasas,['Sin lácteos'],Smoothie de frutas y espinacas
+78,171,37,1,1,['Perder peso'],Baja en carbohidratos,['Sin azúcar'],Pechuga a la plancha con brócoli
+79,153,40,1,2,['Perder peso'],Baja en azúcares,['Sin frutos secos'],Sopa de calabaza y zanahoria
+76,178,35,1,3,['Perder peso'],Baja en grasas,['Sin gluten'],Ensalada de lentejas y vegetales
+74,158,30,1,1,['Perder peso'],Equilibrada,['Sin frutos secos'],Sopa de calabaza y zanahoria
+79,200,36,1,1,['Aumentar energía'],Baja en carbohidratos,['Sin gluten'],Pechuga a la plancha con brócoli
+95,172,65,0,1,['Reducir grasa'],Equilibrada,['Sin lactosa'],Sopa de verduras
+93,159,42,0,1,['Mantener peso'],Equilibrada,['Vegano'],Smoothie de frutas y espinacas
+67,171,58,1,3,['Reducir grasa'],Baja en carbohidratos,['Vegetariano'],Smoothie de frutas y espinacas
+93,184,22,1,2,['Reducir grasa'],Equilibrada,['Vegano'],Pechuga a la plancha con brócoli

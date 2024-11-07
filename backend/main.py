@@ -1,52 +1,75 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List, Optional
+import pandas as pd
+import numpy as np
+import os
+import tensorflow as tf
+from fastapi.security import OAuth2PasswordBearer
 
 app = FastAPI()
 
+# Configuración CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000"],  # Cambia a "*" solo en desarrollo
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["Authorization", "Content-Type", "Accept"],
 )
 
-@app.post("/api/reset-plan")
-async def reset_plan():
-    # Lógica para restablecer el plan del usuario (por ejemplo, eliminarlo de la base de datos)
-    return {"success": True}
+# Rutas de autenticación y seguridad
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-@app.get("/api/check-plan")
-async def check_plan():
-    # Simulación de respuesta; ajusta según tu lógica
-    user_has_plan = True  # Cambia esto a la lógica real para verificar el plan
-    plan_data = {"name": "Plan de ejemplo"} if user_has_plan else None
-    return {"hasPlan": user_has_plan, "plan": plan_data}
+# Cargar los datasets usando rutas absolutas
+base_dir = os.path.dirname(os.path.abspath(__file__))
+ejercicios_path = os.path.join(base_dir, 'data', 'fitness_exercises_enriched.csv')
+recetas_path = os.path.join(base_dir, 'data', 'enriched_recipes_data.csv')
 
+ejercicios_df = pd.read_csv(ejercicios_path)
+recetas_df = pd.read_csv(recetas_path)
 
-# Datos que recibimos del frontend
-from pydantic import BaseModel, Field
-from typing import List, Optional
+# Preprocesamiento de los datasets
+ejercicios_df.dropna(inplace=True)
+recetas_df.dropna(inplace=True)
 
-class UserData(BaseModel):
-    weight: float = Field(..., description="Peso del usuario en Kilogramos")
-    height: float = Field(..., description="Altura del usuario en centimentros")
-    age: int = Field(..., description="Edad del usuario")
-    gender: str = Field(..., pattern="^(male|female)$", description="Genero del usuario, 'Masculino' o 'Femenino'")
-    activity_level: str = Field(..., pattern="^(sedentary|lightly_active|moderately_active|very_active|super_active)$", description="Activity level")
-    goals: List[str] = Field(..., description="Fitness goals of the user")
-    routine_preference: str = Field(..., description="User's exercise routine preference as a string")
-    dietary_restrictions: Optional[List[str]] = Field(default=[], description="Dietary restrictions if any")
+# Calcular las calorías en recetas
+recetas_df['Calories'] = (
+    recetas_df['Protein(g)'].astype(float) * 4 +
+    recetas_df['Carbs(g)'].astype(float) * 4 +
+    recetas_df['Fat(g)'].astype(float) * 9
+)
+ejercicios_df['Calories_Burned'] = ejercicios_df['Calories_Burned'].astype(float)
 
+class UserProfile(BaseModel):
+    weight: float
+    height: float
+    age: int
+    gender: str = Field(..., pattern="^(male|female)$")
+    activity_level: str = Field(..., pattern="^(sedentary|lightly_active|moderately_active|very_active|super_active)$")
+    fitness_goal: str = Field(..., pattern="^(lose_weight|gain_muscle|maintain)$")
+    routine_preference: str
+    dietary_preferences: Optional[List[str]] = []
+    equipment_available: Optional[List[str]] = []
+    meals_per_day: int = 3
 
-# Funciones para calcular TMB, TDEE y ajustar calorías
+# Función para cargar el modelo en tiempo de ejecución
+def cargar_modelo():
+    model_path = os.path.join(base_dir, 'modelo_nutria_lstm.h5')
+    try:
+        model = tf.keras.models.load_model(model_path)
+        return model
+    except Exception as e:
+        print("Error al cargar el modelo:", e)
+        return None
+
+# Funciones de cálculo para TMB y TDEE
 def calcular_tmb(weight, height, age, gender):
     if gender == 'male':
-        return 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+        return 10 * weight + 6.25 * height - 5 * age + 5
     else:
-        return 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
+        return 10 * weight + 6.25 * height - 5 * age - 161
 
 def calcular_tdee(tmb, activity_level):
     activity_factors = {
@@ -58,72 +81,110 @@ def calcular_tdee(tmb, activity_level):
     }
     return tmb * activity_factors[activity_level]
 
-# Generar el plan de macronutrientes según las calorías ajustadas
-def generar_plan_macronutrientes(calories, goals):
-    if 'Ganar masa muscular' in goals:
-        protein_ratio = 0.35
-        carb_ratio = 0.45
-        fat_ratio = 0.20
-    elif 'Perder peso' in goals:
-        protein_ratio = 0.40
-        carb_ratio = 0.35
-        fat_ratio = 0.25
+def calcular_calorias_diarias(user_profile: UserProfile):
+    tmb = calcular_tmb(user_profile.weight, user_profile.height, user_profile.age, user_profile.gender)
+    tdee = calcular_tdee(tmb, user_profile.activity_level)
+
+    if user_profile.fitness_goal == 'lose_weight':
+        calorias_diarias = tdee - 500
+    elif user_profile.fitness_goal == 'gain_muscle':
+        calorias_diarias = tdee + 500
     else:
-        protein_ratio = 0.30
-        carb_ratio = 0.50
-        fat_ratio = 0.20
+        calorias_diarias = tdee
 
-    protein_grams = max((calories * protein_ratio) / 4, 0)
-    carb_grams = max((calories * carb_ratio) / 4, 0)
-    fat_grams = max((calories * fat_ratio) / 9, 0)
+    return calorias_diarias
 
-    return {
-        'proteins': protein_grams,
-        'carbs': carb_grams,
-        'fats': fat_grams
-    }
-
-# Generar el plan de ejercicios según las preferencias y nivel de actividad
-def generar_rutina_ejercicio(activity_level, routine_preference):
-    routines = {
-        'Ejercicio en casa': "Rutina en casa con bandas elásticas y pesas.",
-        'Ejercicio en el gimnasio': "Entrenamiento en el gimnasio con pesas y HIIT.",
-        'Ejercicio al aire libre': "Correr, ciclismo o entrenamiento funcional al aire libre.",
-        'No estoy seguro': "Ejercicios mixtos, combinando diferentes tipos de entrenamiento."
-    }
-
-    # Convertimos la cadena en una lista de rutinas separadas por comas
-    selected_routines = [routines[pref.strip()] for pref in routine_preference.split(',') if pref.strip() in routines]
+def recomendar_ejercicios_con_intensidad(intensidad, user_profile):
+    ejercicios_filtrados = ejercicios_df[ejercicios_df['Intensity'] == intensidad]
     
-    return " / ".join(selected_routines) if selected_routines else "Rutina personalizada sugerida según nivel de actividad."
-
-# Reglas para generar recomendaciones
-def generate_recommendations(data: UserData):
-    tmb = calcular_tmb(data.weight, data.height, data.age, data.gender)
-    tdee = calcular_tdee(tmb, data.activity_level)
+    if user_profile.equipment_available:
+        ejercicios_filtrados = ejercicios_filtrados[
+            ejercicios_filtrados['equipment'].isin(user_profile.equipment_available)
+        ]
     
-    calorias_ajustadas = tdee
+   
+    if ejercicios_filtrados.empty or len(ejercicios_filtrados) < 5:
+        ejercicios_filtrados = ejercicios_df[ejercicios_df['equipment'] != 'body weight']
     
-    plan_macronutrientes = generar_plan_macronutrientes(calorias_ajustadas, data.goals)
-    exercise_plan = generar_rutina_ejercicio(data.activity_level, data.routine_preference)
+    # Selección final de ejercicios
+    return ejercicios_filtrados.sample(n=5).to_dict('records') if len(ejercicios_filtrados) >= 5 else ejercicios_filtrados.to_dict('records')
 
-    return {
-        "exercise_plan": exercise_plan,
-        "nutrition_plan": {
-            "calories": calorias_ajustadas,
-            "protein": plan_macronutrientes['proteins'],
-            "carbs": plan_macronutrientes['carbs'],
-            "fats": plan_macronutrientes['fats']
+
+def recomendar_recetas(user_profile: UserProfile):
+    calorias_diarias = calcular_calorias_diarias(user_profile)
+    calorias_por_comida = calorias_diarias / user_profile.meals_per_day
+    if user_profile.dietary_preferences:
+        recetas_filtradas = recetas_df[recetas_df['Diet_type'].isin(user_profile.dietary_preferences)]
+    else:
+        recetas_filtradas = recetas_df
+    margen_calorias = 100
+    recetas_filtradas = recetas_filtradas[
+        (recetas_filtradas['Calories'] >= calorias_por_comida - margen_calorias) &
+        (recetas_filtradas['Calories'] <= calorias_por_comida + margen_calorias)
+    ]
+    recetas_recomendadas = []
+    for _ in range(user_profile.meals_per_day):
+        if len(recetas_filtradas) > 0:
+            receta = recetas_filtradas.sample(n=1).to_dict('records')[0]
+            recetas_recomendadas.append(receta)
+        else:
+            receta = recetas_df.sample(n=1).to_dict('records')[0]
+            recetas_recomendadas.append(receta)
+    return recetas_recomendadas
+
+def generar_plan_30_dias(user_profile: UserProfile):
+    plan_dias = []
+    for semana in range(4):  
+        ejercicios_semanales = [recomendar_ejercicios_con_intensidad("moderate", user_profile) for _ in range(7)]
+        recetas_semanales = [recomendar_recetas(user_profile) for _ in range(7)]
+        for dia, (ejercicios_dia, recetas_dia) in enumerate(zip(ejercicios_semanales, recetas_semanales), start=1 + semana * 7):
+            dia_plan = {
+                "dia": dia,
+                "ejercicios": ejercicios_dia,
+                "recetas": recetas_dia
+            }
+            plan_dias.append(dia_plan)
+    return {"dias": plan_dias}
+
+@app.post("/predict_progreso")
+def predict_progreso(user_data: List[List[float]]):
+    model = cargar_modelo()
+    if model is None:
+        raise HTTPException(status_code=500, detail="Modelo LSTM no cargado.")
+    try:
+        if len(user_data) != 7 or any(len(day_data) != 5 for day_data in user_data):
+            raise HTTPException(status_code=400, detail="Formato de datos inválido. Se esperan 7 días de datos con 5 valores cada uno.")
+        
+        datos_recientes = np.array(user_data).reshape((1, 7, len(user_data[0])))
+        prediccion = model.predict(datos_recientes)
+        peso_futuro, rendimiento_futuro, meta_nutricional_futura = prediccion[0]
+        return {
+            "peso_futuro": peso_futuro,
+            "rendimiento_futuro": rendimiento_futuro,
+            "meta_nutricional_futura": meta_nutricional_futura
         }
-    }
+    except Exception as e:
+        print("Error en predicción:", e)
+        raise HTTPException(status_code=500, detail="Error al hacer la predicción.")
 
-# Endpoint para generar el plan basado en los datos del usuario
+        
 @app.post("/generate_plan/")
-def generate_plan(user_data: UserData):
-    # Validar el nivel de actividad
-    if user_data.activity_level not in ["sedentary", "lightly_active", "moderately_active", "very_active", "super_active"]:
+def generate_plan(user_profile: UserProfile):
+    if user_profile.activity_level not in [
+        "sedentary", "lightly_active", "moderately_active", "very_active", "super_active"
+    ]:
         raise HTTPException(status_code=400, detail="Nivel de actividad inválido")
-    
-    # Generar recomendaciones
-    recommendations = generate_recommendations(user_data)
-    return recommendations
+    if user_profile.fitness_goal not in ["lose_weight", "gain_muscle", "maintain"]:
+        raise HTTPException(status_code=400, detail="Objetivo de fitness inválido")
+    plan = generar_plan_30_dias(user_profile)
+    return plan
+
+@app.post("/api/reset-plan")
+async def reset_plan():
+    return {"success": True}
+
+@app.get("/api/check-plan")
+async def check_plan(token: str = Depends(oauth2_scheme)):
+    user_has_plan = False
+    plan_data = {"name": "Plan de ejemplo"} if user_has_plan else None
+    return {"hasPlan": user_has_plan, "plan": plan_data}
