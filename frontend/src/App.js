@@ -54,9 +54,18 @@ const App = () => {
         setCurrentDay(null); // Volver a la vista general después de completar un día
     };
 
-    const handleDeletePlan = () => {
-        setPlan(null);
-        setHasPlan(false);
+    const handleDeletePlan = async () => {
+        try {
+            await fetch('http://127.0.0.1:8000/api/reset-plan', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+            });
+        } catch (error) {
+            console.error('Error al eliminar el plan:', error);
+        } finally {
+            setPlan(null);
+            setHasPlan(false);
+        }
     };
 
     return (

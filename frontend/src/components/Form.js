@@ -80,14 +80,20 @@ const Form = ({ setPlan, setHasPlan }) => {
       };
 
       try {
-        const response = await axios.post('http://localhost:8000/generate_plan/', userData);
+        const response = await axios.post(
+          'http://localhost:8000/generate_plan/',
+          userData,
+          {
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+          }
+        );
         setPlan(response.data);
         setHasPlan(true); // Actualiza hasPlan a true
-    } catch (error) {
+      } catch (error) {
         console.error('Error al obtener el plan:', error);
+      }
     }
-}
-};
+  };
 
   const handleCheckboxChange = (setState, value, state) => {
     if (state.includes(value)) {
