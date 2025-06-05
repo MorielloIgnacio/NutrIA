@@ -2,8 +2,36 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List, Optional
+from pathlib import Path
+
+try:
+    import joblib  # type: ignore
+except Exception:  # pragma: no cover - joblib might not be installed
+    joblib = None
 
 app = FastAPI()
+
+calories_model = None
+exercise_model = None
+
+
+@app.on_event("startup")
+def load_models() -> None:
+    """Load ML models if available."""
+    global calories_model, exercise_model
+    if joblib is None:
+        return
+    root = Path(__file__).resolve().parents[1]
+    cal_path = root / "calories_model.pkl"
+    ex_path = root / "exercise_model.pkl"
+    try:
+        calories_model = joblib.load(cal_path)
+    except Exception:
+        calories_model = None
+    try:
+        exercise_model = joblib.load(ex_path)
+    except Exception:
+        exercise_model = None
 
 app.add_middleware(
     CORSMiddleware,
@@ -103,11 +131,30 @@ def generar_rutina_ejercicio(activity_level, routine_preference):
 
 # Reglas para generar recomendaciones
 def generate_recommendations(data: UserData):
+    global calories_model, exercise_model
+
+    if joblib and calories_model is not None and exercise_model is not None:
+        try:
+            features = [[data.weight, data.height, data.age]]
+            calorias_ajustadas = float(calories_model.predict(features)[0])
+            exercise_plan = str(exercise_model.predict(features)[0])
+            plan_macronutrientes = generar_plan_macronutrientes(calorias_ajustadas, data.goals)
+            return {
+                "exercise_plan": exercise_plan,
+                "nutrition_plan": {
+                    "calories": calorias_ajustadas,
+                    "protein": plan_macronutrientes['proteins'],
+                    "carbs": plan_macronutrientes['carbs'],
+                    "fats": plan_macronutrientes['fats']
+                }
+            }
+        except Exception:
+            pass
+
     tmb = calcular_tmb(data.weight, data.height, data.age, data.gender)
     tdee = calcular_tdee(tmb, data.activity_level)
-    
     calorias_ajustadas = tdee
-    
+
     plan_macronutrientes = generar_plan_macronutrientes(calorias_ajustadas, data.goals)
     exercise_plan = generar_rutina_ejercicio(data.activity_level, data.routine_preference)
 
