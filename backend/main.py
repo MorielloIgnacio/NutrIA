@@ -32,7 +32,7 @@ from typing import List, Optional
 
 class UserData(BaseModel):
     weight: float = Field(..., description="Peso del usuario en Kilogramos")
-    height: float = Field(..., description="Altura del usuario en centimentros")
+    height: float = Field(..., description="Altura del usuario en centímetros")
     age: int = Field(..., description="Edad del usuario")
     gender: str = Field(..., pattern="^(male|female)$", description="Genero del usuario, 'Masculino' o 'Femenino'")
     activity_level: str = Field(..., pattern="^(sedentary|lightly_active|moderately_active|very_active|super_active)$", description="Activity level")
