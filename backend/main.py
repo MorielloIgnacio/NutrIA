@@ -1,9 +1,22 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+from sqlalchemy.orm import Session
 from typing import List, Optional
 
+from .db import SessionLocal, init_db
+from .db_models import NutritionPlan
+
 app = FastAPI()
+
+init_db()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,21 +27,31 @@ app.add_middleware(
 )
 
 @app.post("/api/reset-plan")
-async def reset_plan():
-    # Lógica para restablecer el plan del usuario (por ejemplo, eliminarlo de la base de datos)
+async def reset_plan(db: Session = Depends(get_db)):
+    plan = db.query(NutritionPlan).filter(NutritionPlan.user_id == 1).first()
+    if plan:
+        db.delete(plan)
+        db.commit()
     return {"success": True}
 
 @app.get("/api/check-plan")
-async def check_plan():
-    # Simulación de respuesta; ajusta según tu lógica
-    user_has_plan = True  # Cambia esto a la lógica real para verificar el plan
-    plan_data = {"name": "Plan de ejemplo"} if user_has_plan else None
-    return {"hasPlan": user_has_plan, "plan": plan_data}
+async def check_plan(db: Session = Depends(get_db)):
+    plan = db.query(NutritionPlan).filter(NutritionPlan.user_id == 1).first()
+    if plan:
+        plan_data = {
+            "nutrition_plan": {
+                "calories": plan.calories,
+                "protein": plan.protein,
+                "carbs": plan.carbs,
+                "fats": plan.fats,
+            },
+            "exercise_plan": plan.exercise_plan,
+        }
+        return {"hasPlan": True, "plan": plan_data}
+    return {"hasPlan": False, "plan": None}
 
 
 # Datos que recibimos del frontend
-from pydantic import BaseModel, Field
-from typing import List, Optional
 
 class UserData(BaseModel):
     weight: float = Field(..., description="Peso del usuario en Kilogramos")
@@ -123,11 +146,30 @@ def generate_recommendations(data: UserData):
 
 # Endpoint para generar el plan basado en los datos del usuario
 @app.post("/generate_plan/")
-def generate_plan(user_data: UserData):
+def generate_plan(user_data: UserData, db: Session = Depends(get_db)):
     # Validar el nivel de actividad
     if user_data.activity_level not in ["sedentary", "lightly_active", "moderately_active", "very_active", "super_active"]:
         raise HTTPException(status_code=400, detail="Nivel de actividad inválido")
     
     # Generar recomendaciones
     recommendations = generate_recommendations(user_data)
+
+    plan = db.query(NutritionPlan).filter(NutritionPlan.user_id == 1).first()
+    if plan:
+        plan.calories = recommendations["nutrition_plan"]["calories"]
+        plan.protein = recommendations["nutrition_plan"]["protein"]
+        plan.carbs = recommendations["nutrition_plan"]["carbs"]
+        plan.fats = recommendations["nutrition_plan"]["fats"]
+        plan.exercise_plan = recommendations["exercise_plan"]
+    else:
+        plan = NutritionPlan(
+            user_id=1,
+            calories=recommendations["nutrition_plan"]["calories"],
+            protein=recommendations["nutrition_plan"]["protein"],
+            carbs=recommendations["nutrition_plan"]["carbs"],
+            fats=recommendations["nutrition_plan"]["fats"],
+            exercise_plan=recommendations["exercise_plan"],
+        )
+        db.add(plan)
+    db.commit()
     return recommendations
