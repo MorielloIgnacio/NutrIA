@@ -70,7 +70,7 @@ const App = () => {
             ) : hasPlan ? (
                 <NutritionPlan plan={plan} onStartFirstDay={handleStartFirstDay} onDeletePlan={handleDeletePlan} />
             ) : (
-                <Form setPlan={setPlan} setHasPlan={setHasPlan} /> // Asegúrate de pasar setHasPlan como prop
+                <Form setPlan={setPlan} setHasPlan={setHasPlan} /> {/* Asegúrate de pasar setHasPlan como prop */}
             )}
         </div>
     );
