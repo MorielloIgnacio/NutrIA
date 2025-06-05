@@ -1,9 +1,21 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List, Optional
+from sqlalchemy.orm import Session
+import json
+
+import db
 
 app = FastAPI()
+db.init_db()
+
+def get_db():
+    database = db.SessionLocal()
+    try:
+        yield database
+    finally:
+        database.close()
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,16 +26,17 @@ app.add_middleware(
 )
 
 @app.post("/api/reset-plan")
-async def reset_plan():
-    # Lógica para restablecer el plan del usuario (por ejemplo, eliminarlo de la base de datos)
+async def reset_plan(db_session: Session = Depends(get_db)):
+    db_session.query(db.Plan).delete()
+    db_session.commit()
     return {"success": True}
 
 @app.get("/api/check-plan")
-async def check_plan():
-    # Simulación de respuesta; ajusta según tu lógica
-    user_has_plan = True  # Cambia esto a la lógica real para verificar el plan
-    plan_data = {"name": "Plan de ejemplo"} if user_has_plan else None
-    return {"hasPlan": user_has_plan, "plan": plan_data}
+async def check_plan(db_session: Session = Depends(get_db)):
+    plan_obj = db_session.query(db.Plan).first()
+    if plan_obj:
+        return {"hasPlan": True, "plan": json.loads(plan_obj.data)}
+    return {"hasPlan": False, "plan": None}
 
 
 # Datos que recibimos del frontend
@@ -119,11 +132,14 @@ def generate_recommendations(data: UserData):
 
 # Endpoint para generar el plan basado en los datos del usuario
 @app.post("/generate_plan/")
-def generate_plan(user_data: UserData):
+def generate_plan(user_data: UserData, db_session: Session = Depends(get_db)):
     # Validar el nivel de actividad
     if user_data.activity_level not in ["sedentary", "lightly_active", "moderately_active", "very_active", "super_active"]:
         raise HTTPException(status_code=400, detail="Nivel de actividad inválido")
     
     # Generar recomendaciones
     recommendations = generate_recommendations(user_data)
+    db_session.query(db.Plan).delete()
+    db_session.add(db.Plan(data=json.dumps(recommendations)))
+    db_session.commit()
     return recommendations
