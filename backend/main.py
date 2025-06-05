@@ -2,8 +2,20 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List, Optional
+from pathlib import Path
+import joblib
+import numpy as np
 
 app = FastAPI()
+
+# Paths to the trained models
+BASE_DIR = Path(__file__).resolve().parent.parent
+calories_model = joblib.load(BASE_DIR / "calories_model.pkl")
+exercise_model = joblib.load(BASE_DIR / "exercise_model.pkl")
+scaler = joblib.load(BASE_DIR / "scaler.pkl")
+le_gender = joblib.load(BASE_DIR / "le_gender.pkl")
+le_activity = joblib.load(BASE_DIR / "le_activity.pkl")
+le_exercise = joblib.load(BASE_DIR / "le_exercise.pkl")
 
 app.add_middleware(
     CORSMiddleware,
@@ -43,6 +55,11 @@ class UserData(BaseModel):
     goals: List[str] = Field(..., description="Fitness goals of the user")
     routine_preference: str = Field(..., description="User's exercise routine preference as a string")
     dietary_restrictions: Optional[List[str]] = Field(default=[], description="Dietary restrictions if any")
+    disliked_foods: Optional[str] = Field(default=None, description="Foods the user dislikes")
+    body_fat: Optional[float] = Field(default=None, description="Body fat percentage")
+    muscle_mass: Optional[float] = Field(default=None, description="Muscle mass in kilograms")
+    heart_rate: Optional[float] = Field(default=None, description="Resting heart rate")
+    steps: Optional[int] = Field(default=None, description="Daily steps from smart devices")
 
 
 # Funciones para calcular TMB, TDEE y ajustar calorías
@@ -103,13 +120,32 @@ def generar_rutina_ejercicio(activity_level, routine_preference):
 
 # Reglas para generar recomendaciones
 def generate_recommendations(data: UserData):
-    tmb = calcular_tmb(data.weight, data.height, data.age, data.gender)
-    tdee = calcular_tdee(tmb, data.activity_level)
-    
-    calorias_ajustadas = tdee
-    
+    body_fat = data.body_fat or 0.0
+    muscle_mass = data.muscle_mass or 0.0
+    heart_rate = data.heart_rate or 0.0
+    steps = data.steps or 0
+
+    gender_encoded = le_gender.transform([data.gender])[0]
+    activity_encoded = le_activity.transform([data.activity_level])[0]
+    features = np.array([[
+        data.weight,
+        data.height,
+        data.age,
+        gender_encoded,
+        activity_encoded,
+        body_fat,
+        muscle_mass,
+        heart_rate,
+        steps
+    ]])
+
+    calories_scaled = scaler.transform(features)
+    calorias_ajustadas = calories_model.predict(calories_scaled)[0]
+
+    exercise_label = exercise_model.predict(features)[0]
+    exercise_plan = le_exercise.inverse_transform([exercise_label])[0]
+
     plan_macronutrientes = generar_plan_macronutrientes(calorias_ajustadas, data.goals)
-    exercise_plan = generar_rutina_ejercicio(data.activity_level, data.routine_preference)
 
     return {
         "exercise_plan": exercise_plan,
