@@ -55,6 +55,8 @@ const App = () => {
     };
 
     const handleDeletePlan = () => {
+        fetch('http://127.0.0.1:8000/api/reset-plan', { method: 'POST' })
+            .catch(err => console.error('Error al eliminar plan:', err));
         setPlan(null);
         setHasPlan(false);
     };
