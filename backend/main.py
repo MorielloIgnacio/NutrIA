@@ -34,7 +34,11 @@ class UserData(BaseModel):
     weight: float = Field(..., description="Peso del usuario en Kilogramos")
     height: float = Field(..., description="Altura del usuario en centimentros")
     age: int = Field(..., description="Edad del usuario")
-    gender: str = Field(..., pattern="^(male|female)$", description="Genero del usuario, 'Masculino' o 'Femenino'")
+    gender: str = Field(
+        ...,
+        pattern="^(male|female)$",
+        description="Genero del usuario; valores permitidos: 'male' o 'female'",
+    )
     activity_level: str = Field(..., pattern="^(sedentary|lightly_active|moderately_active|very_active|super_active)$", description="Activity level")
     goals: List[str] = Field(..., description="Fitness goals of the user")
     routine_preference: str = Field(..., description="User's exercise routine preference as a string")
